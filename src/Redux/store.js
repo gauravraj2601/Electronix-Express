@@ -1,9 +1,11 @@
 
-import {applyMiddleware, combineReducers, legacy_createStore} from "redux"
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import { productReducer } from "./GetProducts/productReducer";
 import thunk from "redux-thunk"
 import { authReducer } from "./Authentication/authReducer"
 const rootReducer=combineReducers({
-    authReducer
+    authReducer,
+    productReducer
 })
 
 
