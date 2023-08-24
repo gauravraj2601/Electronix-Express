@@ -8,13 +8,14 @@ import WishList from '../Pages/WishList'
 import Login from '../Pages/Login'
 import PrivateRoute from './PrivateRoute'
 import AddForm from '../Pages/Admin'
+import Admin from '../Pages/Admin'
 
 const AllRoutes = () => {
   return (
     <Routes>
         <Route path="/" element={<HomePage />} />\
         <Route path="/product" element={<Products />} />
-        <Route path="/admin" element={<AddForm />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/singleproduct/:id" element={<SingleProducts />} />
         <Route path='/cartitems' element={
                     <PrivateRoute>

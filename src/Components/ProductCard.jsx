@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react';
 import { styled } from 'styled-components';
 
 const ProductCard = ({image,name, category, review,company, price}) => {
-    const averageRating = review.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review.length;
+    const averageRating = (review)? (review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review.length ):([]);
 
 
   return (
@@ -22,7 +22,8 @@ const ProductCard = ({image,name, category, review,company, price}) => {
               <StarIcon />
             </Box>
           ))}
-          <p style={{ marginLeft: '8px' }}>{averageRating.toFixed(1)}</p>
+
+       { (review)? (<p style={{ marginLeft: '8px' }}>{averageRating.toFixed(1)}</p>):(<p></p>)  }
         </div>
             <h5>₹ {price}</h5>
 

@@ -4,7 +4,7 @@ const initialState = {
     products: []
   };
   
-  const productReducer = (state = initialState, action) => {
+  export const reducer = (state = initialState, action) => {
     switch (action.type) {
       case PRODUCT_ADDED:
         return {
@@ -17,5 +17,5 @@ const initialState = {
     }
   };
   
-  export default productReducer;
+  
   
