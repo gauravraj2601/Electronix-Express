@@ -8,9 +8,8 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Button
- 
- 
+  Button,
+  Heading,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -33,64 +32,80 @@ const Navbar = () => {
     // <div>Navbar</div>
     <DIV>
       <Box
-      bg="blackAlpha.500"
-      filter="transparent"
-      p={5}
-      color="black"
-      display="flex"
-      justifyContent="space-between"
+        bg="blackAlpha.500"
+        filter="transparent"
+        p={5}
+        color="black"
+        display="flex"
+        justifyContent="space-between"
+        // border="1px solid red"
+        width="100%"
+        backgroundColor={{
+          lg: "blackAlpha.500",
+          md: "blackAlpha.500",
+          sm: "teal",
+          base: "teal",
+        }}
+        backgroundImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzNhUGFu4dD7bEV5Gi4wucfakeCwerh0fnwo5pm0SPlLWeJnVZqEkinYLjuA63B-SlX2I&usqp=CAU"
       >
-        <Box>
-          <img src="./public/Navbar_Logo.jpg" alt="logo" />
-        </Box>
-
-        <Box width="50%"      display={{ lg: "flex", md: "flex", sm: "none", base: "none" }}
-          border="1px solid red"
-        justifyContent="space-around"
+        <Box alignItems="center" display="flex">
+          {/* <img src="./public/Navbar_Logo.jpg" alt="logo" /> */}
+          <Heading
+            fontSize={{ lg: "20px", md: "18px", sm: "15px", base: "15px" }}
           >
-         
-            {navList.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                style={({ isActive, isPending }) => {
-                  return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "blue" : "black",
-                    textDecoration: "none",
-                  };
-                }}
-              >
-                {link.title}
-              </NavLink>
-            ))}
-            {/* Logic for userName Disaplayed as login */}
-
-            {isAuth && <Text fontFamily="Open Sans sans-serif">{}</Text>}
-
-            {/* Login and LogOut Logic */}
-            {isAuth ? (
-              <NavLink>LogOut</NavLink>
-            ) : (
-              <NavLink
-                to={"/login"}
-                style={({ isActive, isPending }) => {
-                  return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "blue" : "black",
-                    textDecoration: "none",
-                  };
-                }}
-              >
-                Login
-              </NavLink>
-            )}
-       
+            Express Electronics
+          </Heading>
         </Box>
-      </Box>
 
-{/* Drawer for mobile size Screen */}
-<Box display={{ lg: "none", md: "none", sm: "flex", base: "flex" }}>
+        <Box
+          width="50%"
+          display={{ lg: "flex", md: "flex", sm: "none", base: "none" }}
+          justifyContent="space-around"
+        >
+          {navList.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  color: isPending ? "blue" : "black",
+                  textDecoration: "none",
+                };
+              }}
+            >
+              {link.title}
+            </NavLink>
+          ))}
+          {/* Logic for userName Disaplayed as login */}
+
+          {isAuth && <Text fontFamily="Open Sans sans-serif">{}</Text>}
+
+          {/* Login and LogOut Logic */}
+          {isAuth ? (
+            <NavLink>LogOut</NavLink>
+          ) : (
+            <NavLink
+              to={"/login"}
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  color: isPending ? "blue" : "black",
+                  textDecoration: "none",
+                };
+              }}
+            >
+              Login
+            </NavLink>
+          )}
+        </Box>
+        {/* </Box> */}
+
+        {/* Drawer for mobile size Screen */}
+        <Box
+          display={{ lg: "none", md: "none", sm: "flex", base: "flex" }}
+          // backgroundColor={{lg:"none" , md:"none" , sm :"teal" ,base:"teal"}}
+        >
           <Button bg="blackAlpha.500" color="white" onClick={onOpen}>
             {<HamburgerIcon />}
           </Button>
@@ -131,7 +146,7 @@ const Navbar = () => {
                     </Text>
                   ) : (
                     <NavLink
-                      to="/signin"
+                      to="/login"
                       fontFamily="Open Sans sans-serif"
                       border="2px solid red"
                       style={({ isActive, isPending }) => {
@@ -141,7 +156,7 @@ const Navbar = () => {
                         };
                       }}
                     >
-                      Signin
+                      Login
                     </NavLink>
                   )}
                 </Box>
@@ -149,10 +164,7 @@ const Navbar = () => {
             </DrawerContent>
           </Drawer>
         </Box>
-      {/* </Box> */}
-     
-
-
+      </Box>
     </DIV>
   );
 };
@@ -160,5 +172,6 @@ const Navbar = () => {
 export default Navbar;
 
 const DIV = styled.div`
-  background-color: teal;
+  display: flex;
+  justify-content: space-between;
 `;
