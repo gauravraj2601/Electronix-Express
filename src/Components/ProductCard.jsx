@@ -46,12 +46,14 @@ const DIV= styled.div`
         margin-top: 10px;
     }
     img{
-        width: 90%;
-        height: 95%;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
     .product-details{
         height: 50%;
         text-align: start;
         border: 4px solid orange;
+        display: block; 
     }
 `
