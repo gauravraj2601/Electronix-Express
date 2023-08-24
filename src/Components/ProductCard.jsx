@@ -1,14 +1,14 @@
 import React from 'react'
 import { StarIcon } from '@chakra-ui/icons';
-import { Box } from '@chakra-ui/react'; 
 import { styled } from 'styled-components';
+import { Box, Icon } from '@chakra-ui/react';
+import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 
 const ProductCard = ({image,name, category, review,company, price}) => {
-    const averageRating = review.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review.length;
-
-
+  
+  const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;
   return (
-    <DIV>
+    <DIV className='card'>
         <div className='image-div'>
         <img src={image} alt="product-img" />
         </div>
@@ -25,8 +25,10 @@ const ProductCard = ({image,name, category, review,company, price}) => {
           <p style={{ marginLeft: '8px' }}>{averageRating.toFixed(1)}</p>
         </div>
             <h5>₹ {price}</h5>
-
-            
+        <div className='wishlist-cart'>
+          <Icon as={FiHeart} boxSize={6} color='gray.500' _hover={{ color: 'red.500' }} />
+          <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
+        </div>      
         </div>
 
     </DIV>
@@ -36,12 +38,19 @@ const ProductCard = ({image,name, category, review,company, price}) => {
 export default ProductCard
 
 const DIV= styled.div`
-    border: 1px solid red;
-    height: 400px;
+    /* border: 1px solid red; */
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background-color: white;
+
+    &:hover{
+      transform: translateY(-5px);
+    }
     .image-div{
         width: 80%;
-        height: 40%;
-        border: 2px solid black;
+        height: 50%;
+        /* border: 2px solid black; */
         margin:auto;
         margin-top: 10px;
     }
@@ -51,9 +60,23 @@ const DIV= styled.div`
         object-fit: contain;
     }
     .product-details{
-        height: 50%;
+        width: 90%;
+        height: 45%;
+        margin: auto;
         text-align: start;
-        border: 4px solid orange;
-        display: block; 
+        /* border: 1px solid orange; */
+        margin-top: 5px;
+        position: relative;
+    }
+    .wishlist-cart{
+      width: 10%;
+      height: 60%;
+      /* border: 1px solid green; */
+      display: grid;
+      justify-content: space-between;
+      position: absolute;
+      right: 10%;
+      bottom: 15px;
+
     }
 `

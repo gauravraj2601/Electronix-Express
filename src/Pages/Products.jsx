@@ -3,18 +3,31 @@ import { styled } from 'styled-components';
 import ProductCard from '../Components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../Redux/GetProducts/action';
+import Sidebar from '../Components/Sidebar';
+import { useSearchParams } from 'react-router-dom';
 
 const Products = () => {
     const products= useSelector((store)=>store.productReducer.products);
     const dispatch= useDispatch();
+    const [searchParams]= useSearchParams();
 
+    let paramObj={
+        params:{
+            category:searchParams.getAll("category"),
+            company:searchParams.getAll("company")
+
+        }
+    }
+    console.log(paramObj)
     useEffect(()=>{
-        dispatch(getProducts())
-    },[])
+        dispatch(getProducts(paramObj))
+    },[searchParams])
     console.log(products)
   return (
     <DIV>
-        <div className='sidebar'>sidebar</div>
+        <div className='sidebar'>
+            <Sidebar />
+        </div>
         <div className='card_container'>
         {products?.map((product)=>(
             <ProductCard key={product.id} {...product} />
@@ -30,10 +43,13 @@ const DIV= styled.div`
     display: flex;
     width: 100%;
     gap:15px;
+    margin-top: 15px;
+
     .sidebar{
         width:15%;
         height:500px;
         border: 1px solid red;
+        margin-left: 10px;
     }
     .card_container{
         width: 85%;
