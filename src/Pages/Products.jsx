@@ -14,15 +14,16 @@ const Products = () => {
     let paramObj={
         params:{
             category:searchParams.getAll("category"),
-            company:searchParams.getAll("company")
-
+            company:searchParams.getAll("company"),
+            price_gte:+searchParams.get("price_gte"),
+            price_lte:+searchParams.get("price_lte")
         }
     }
-    console.log(paramObj)
+    // console.log(paramObj)
     useEffect(()=>{
         dispatch(getProducts(paramObj))
     },[searchParams])
-    console.log(products)
+    // console.log(products)
   return (
     <DIV>
         <div className='sidebar'>
@@ -47,7 +48,7 @@ const DIV= styled.div`
 
     .sidebar{
         width:15%;
-        height:500px;
+        height:550px;
         border: 1px solid red;
         margin-left: 10px;
     }

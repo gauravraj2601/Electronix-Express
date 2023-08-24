@@ -10,7 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const Sidebar = () => {
     const [searchParams, setSearchParams]= useSearchParams();
-  const [range, setRange] = useState([100, 1000]);
+  const [range, setRange] = useState([100, 10000]);
   const [category, setCategory]= useState(searchParams.getAll("category") || [])
   const [company, setCompany] =useState(searchParams.getAll("company") || [])
   const handleSliderChange = (newRange) => {
@@ -52,16 +52,36 @@ const Sidebar = () => {
     }
     setCompany(newcompany)
   }
-  useEffect(()=>{
-    let params={
-        category,
-        range,
-        company
-    }
+//   useEffect(()=>{
+//     let params={
+//         category,
+//         company
+//     }
+//     if(range[0] !==0){
+//         params.price_gte= range[0];
+//     }
+//     if(range[1] !== 0){
+//         params.price_lte=range[1];
+//     }
 
-    setSearchParams(params)
-  },[category,range,company])
+//     setSearchParams(params)
+//   },[category,range,company])
 // console.log(range[0], range[1])
+
+  const handleFiltering=()=>{
+    let params={
+                category,
+                company
+            }
+            if(range[0] !==0){
+                params.price_gte= range[0];
+            }
+            if(range[1] !== 0){
+                params.price_lte=range[1];
+            }
+        
+            setSearchParams(params)
+  }
   return (
     <DIV>
       <div>Filter</div>
@@ -207,6 +227,7 @@ const Sidebar = () => {
             <label>Microsoft</label>
         </div>
       </div>
+      <button onClick={handleFiltering}>Apply Filter</button>
     </DIV>
   );
 };
@@ -233,7 +254,14 @@ const DIV = styled.div`
     margin-top: 5px;
     text-align: start;
   }
-
+  button{
+    font-weight: bold;
+    background-color: gray;
+    border-radius: 15px;
+    width: 120px;
+    margin-top:10px;
+    padding: 5px;
+  }
 
 
 `
