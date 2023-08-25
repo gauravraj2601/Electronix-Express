@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import {
-  Input, RangeSlider,
-  RangeSliderTrack,
-  RangeSliderFilledTrack,
-  RangeSliderThumb,
+  Input,
+//    RangeSlider,
+//   RangeSliderTrack,
+//   RangeSliderFilledTrack,
+//   RangeSliderThumb,
 } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({minPrice, maxPrice}) => {
     const [searchParams, setSearchParams]= useSearchParams();
-  const [range, setRange] = useState([100, 10000]);
-  const [category, setCategory]= useState(searchParams.getAll("category") || [])
-  const [company, setCompany] =useState(searchParams.getAll("company") || [])
-  const handleSliderChange = (newRange) => {
-    setRange(newRange);
-  };
+    const [category, setCategory]= useState(searchParams.getAll("category") || [])
+    const [company, setCompany] =useState(searchParams.getAll("company") || [])
+    
+    const [range, setRange] = useState([
+        searchParams.get("price_gte") || '',
+        searchParams.get("price_lte") || ''
+    ]);
+
+  
+//   const handleSliderChange = (newRange) => {
+//     setRange(newRange);
+//   };
 
   const handleMinInputChange = (value) => {
     const newMin = parseFloat(value);
@@ -30,6 +37,8 @@ const Sidebar = () => {
       setRange([range[0], newMax]);
     }
   };
+
+
   const handleCategory=(e)=>{
         const {value}= e.target;
         let newAddedCategory=[...category];
@@ -51,47 +60,36 @@ const Sidebar = () => {
         newcompany.push(value)
     }
     setCompany(newcompany)
-  }
-//   useEffect(()=>{
-//     let params={
-//         category,
-//         company
-//     }
-//     if(range[0] !==0){
-//         params.price_gte= range[0];
-//     }
-//     if(range[1] !== 0){
-//         params.price_lte=range[1];
-//     }
+}
 
-//     setSearchParams(params)
-//   },[category,range,company])
-// console.log(range[0], range[1])
 
-  const handleFiltering=()=>{
-    let params={
-                category,
-                company
-            }
-            if(range[0] !==0){
-                params.price_gte= range[0];
-            }
-            if(range[1] !== 0){
-                params.price_lte=range[1];
-            }
-        
-            setSearchParams(params)
-  }
+const handleFiltering=()=>{
+  let params={
+              category,
+              company
+          }
+          if(range[0] !==0 && range[0]!== null && range[1] !== 0  && range[1]!== null){
+              params.price_gte= range[0];
+              params.price_lte=range[1];
+          }
+        //   if(range[1] !== 0  && range[1]!== null){
+        //   }
+      
+          setSearchParams(params)
+}
+
+
+
   return (
     <DIV>
       <div>Filter</div>
       <div className='price'>
-        <h4>Price</h4>
+        <h4>Price Range</h4>
         
-        <RangeSlider
+        {/* <RangeSlider
           aria-label="price-range"
-          min={0}
-          max={5000}
+          min={minPrice}
+          max={maxPrice+10000}
           step={1}
           defaultValue={range}
           value={range}
@@ -102,19 +100,21 @@ const Sidebar = () => {
           </RangeSliderTrack>
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
-        </RangeSlider>
+        </RangeSlider> */}
         <div className='price-range'>
         <Input
           type="number"
           placeholder="Min"
           value={range[0]}
           onChange={(e) => handleMinInputChange(e.target.value)}
+          
         />
         <Input
           type="number"
           placeholder="Max"
           value={range[1]}
           onChange={(e) => handleMaxInputChange(e.target.value)}
+          
         />
         </div>
       </div>

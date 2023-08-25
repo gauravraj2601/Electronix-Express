@@ -3,15 +3,19 @@ import { StarIcon } from '@chakra-ui/icons';
 import { styled } from 'styled-components';
 import { Box, Icon } from '@chakra-ui/react';
 import { FiHeart, FiShoppingCart } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({image,name, category, review,company, price}) => {
+const ProductCard = ({id,image,name, category, review,company, price}) => {
   const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;
 
   return (
     <DIV className='card'>
+      <Link to={`/singleproduct/${id}/${averageRating.toFixed(1)}`}>
         <div className='image-div'>
         <img src={image} alt="product-img" />
         </div>
+      
+      </Link>
         <div className='product-details' >
             <h3>{name}</h3>
             <h5>{category}</h5>
