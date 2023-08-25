@@ -12,6 +12,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import logo  from "./Images/Navbar_Logo.jpg"
 
 import React from "react";
 import { useSelector } from "react-redux";
@@ -49,9 +50,11 @@ const Navbar = () => {
         backgroundImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzNhUGFu4dD7bEV5Gi4wucfakeCwerh0fnwo5pm0SPlLWeJnVZqEkinYLjuA63B-SlX2I&usqp=CAU"
       >
         <Box alignItems="center" display="flex">
-          {/* <img src="./public/Navbar_Logo.jpg" alt="logo" /> */}
+          {/* <img src={logo} alt="logo" /> */}
           <Heading
             fontSize={{ lg: "20px", md: "18px", sm: "15px", base: "15px" }}
+            fontFamily="Sofia" sans-serif
+            textShadow="3px 3px 3px #ababab"
           >
             Express Electronics
           </Heading>
