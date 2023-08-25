@@ -9,7 +9,7 @@ const initialState = {
       case PRODUCT_ADDED:
         return {
           ...state,
-          products: [...state.products, action.payload]
+          products: [...state.products, +action.payload]
         };
       // Handle other actions if needed
       default:

@@ -6,7 +6,7 @@ const PrivateRoute = ({children}) => {
     const isAuth= useSelector((store)=>store.authReducer.isAuth);
     const location= useLocation();
   return (
-    //                                    giving the pathname to state in location
+    //    giving the pathname to state in location
     <div>{isAuth?children:<Navigate state={location.pathname} to='/login' />}</div>
   )
 }
