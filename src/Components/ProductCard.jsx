@@ -4,10 +4,18 @@ import { styled } from 'styled-components';
 import { Box, Icon } from '@chakra-ui/react';
 import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../Redux/GetProducts/action';
 
 const ProductCard = ({id,image,name, category, review,company, price}) => {
   const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;
+  const products= useSelector(store=>store.productReducer.products)
+  const dispatch= useDispatch()
 
+  const handleCart=(id)=>{
+    const cart= products.find((el)=>el.id===id);
+    dispatch(addToCart(cart))
+  }
   return (
     <DIV className='card'>
       <Link to={`/singleproduct/${id}/${averageRating.toFixed(1)}`}>
@@ -32,9 +40,9 @@ const ProductCard = ({id,image,name, category, review,company, price}) => {
             <h5>₹ {price}</h5>
         <div className='wishlist-cart'>
           <Icon as={FiHeart} boxSize={6} color='gray.500' _hover={{ color: 'red.500' }} />
-          <Link to="/cartitems">
-          <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
-          </Link>
+            <button onClick={()=>handleCart(id)}>
+              <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
+            </button>
         </div>      
         </div>
 
