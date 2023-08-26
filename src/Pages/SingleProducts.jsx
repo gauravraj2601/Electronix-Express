@@ -7,11 +7,13 @@ import { AiFillTag } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 
 import logo from "../Images/logo.png";
+import RatingModule from "../Components/RatingModule";
 const SingleProducts = () => {
   const { id, averageRating } = useParams();
   const products = useSelector((store) => store.productReducer.products);
   const [data, setData] = useState({});
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [isRatingModuleOpen, setIsRatingModuleOpen] = useState(false);
 
   useEffect(() => {
     const product = products.find((el) => el.id === +id);
@@ -140,6 +142,8 @@ const SingleProducts = () => {
             ))}
           </ul>
         </div>
+
+                {/* Seller */}
         <div>
           <h2 style={{ display: "flex" }}>
             Seller{" "}
@@ -163,14 +167,9 @@ const SingleProducts = () => {
             <li>7 Days Service Center Replacement/Repair</li>
           </ul>
         </div>
-        <div>
-          <h2>Highlights</h2>
-          <ul style={{ marginLeft: "50px", color: "gray" }}>
-            {data?.Highlights?.map((highlight, index) => (
-              <li key={index}>{highlight}</li>
-            ))}
-          </ul>
-        </div>
+
+              {/* Product Description */}
+
         <div>
           <h2>Product Description</h2>
           <ul style={{ marginLeft: "50px", color: "gray" }}>
@@ -207,6 +206,9 @@ const SingleProducts = () => {
             </button>
           </ul>
         </div>
+
+            {/* Rating */}
+
         <div>
           <h2>Ratings & Reviews</h2>
           <div style={{ marginLeft: "50px" }}>
@@ -226,13 +228,25 @@ const SingleProducts = () => {
                 >
                   {data?.review?.length} Reviews
                 </p>
+                <button className="rating-button" 
+                 onClick={() => setIsRatingModuleOpen(true)}
+                >Rate Product</button>
               </div>
+            
+              <RatingModule
+                    isOpen={isRatingModuleOpen}
+                    onClose={() => setIsRatingModuleOpen(false)}
+                    name={data?.name}
+                    reviews={data?.review?.length}
+                    rating={averageRating}
+                    productName={data?.name}
+                    id={id}
+                  />
               {data?.review?.map((reviews, index) => (
-                <>
+                <div key={index}>
                   <li className="rating" key={index}>
                     {reviews.name}
                     {"  "}{" "}
-                    
                     <span
                       style={{
                         width: "40px",
@@ -243,8 +257,7 @@ const SingleProducts = () => {
                         fontSize: "14px",
                         borderRadius: "5px",
                         padding: "2px",
-                      }}
-                    >
+                      }}>
                       {reviews.rating}{" "}
                       <StarIcon
                         marginBottom="5px"
@@ -256,7 +269,7 @@ const SingleProducts = () => {
                   <div>
                     <p>{reviews.text}</p>
                   </div>
-                </>
+                </div>
               ))}
             </ul>
           </div>
@@ -309,5 +322,14 @@ const DIV = styled.div`
   .rating{
     color: black;
     font-weight: 600;
+  }
+  .rating-button{
+    width: 95px;
+    height: 30px;
+    margin-left: 30px;
+    font-size: 12px;
+    font-weight: 550;
+    background-color: #eee9e9;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   }
 `;

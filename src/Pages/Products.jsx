@@ -22,8 +22,8 @@ let paramObj = {
     params: {
         category: searchParams.getAll("category"),
         company: searchParams.getAll("company"),
-        price_gte: priceGte,
-        price_lte:priceLte ===0?1000000:priceLte
+        // price_gte: priceGte,
+        // price_lte:priceLte ===0?1000000:priceLte
     }
 };
  
