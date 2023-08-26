@@ -7,6 +7,7 @@ export const addProduct = (productData) => async (dispatch) => {
   try {
     const response = await axios.post("https://electronix-express-api.onrender.com/products", productData);
     dispatch({ type: PRODUCT_ADDED, payload: response.data });
+    alert("succesfull")
   } catch (error) {
     dispatch({type:GET_FAILURE})
     console.error('Error adding product:', error);
