@@ -10,18 +10,23 @@ import {
   DrawerCloseButton,
   Button,
   Heading,
+  Input,
+  InputGroup, InputLeftElement 
 } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
-import logo  from "./Images/Navbar_Logo.jpg"
-
-import React from "react";
+import { HamburgerIcon, SearchIcon  } from "@chakra-ui/icons";
+import debounce from "lodash/debounce";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useSearchParams } from "react-router-dom";
 import { styled } from "styled-components";
 
 const Navbar = () => {
   const isAuth = useSelector((store) => store.authReducer.isAuth);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location= useLocation();
+  const [search, setSearch]= useState("");
+  const [searchParams, setSearchParams]= useSearchParams();
+
   const navList = [
     { to: "/", title: "Home" },
     { to: "/product", title: "AllProduct" },
@@ -29,6 +34,21 @@ const Navbar = () => {
     { to: "/cartitems", title: "Cart" },
   ];
 
+  const debouncedSetSearch = debounce((value) => {
+    setSearch(value);
+  }, 1000); 
+
+  const handleSearch=(e)=>{
+    const {value}=e.target;
+    debouncedSetSearch(value); 
+  }
+  
+  useEffect(()=>{
+    let params={
+    }
+    search && (params.search=search) 
+     setSearchParams(params)
+  },[search])
   return (
     // <div>Navbar</div>
     <DIV>
@@ -59,6 +79,19 @@ const Navbar = () => {
             Express Electronics
           </Heading>
         </Box>
+
+            {/* Search bar */}
+
+        {location.pathname==="/product" && 
+        <Box>
+        <InputGroup  borderColor="gray" borderWidth="1px" borderRadius="md">
+          <InputLeftElement pointerEvents="none">
+            <SearchIcon color="gray" />
+          </InputLeftElement>
+          <Input type="search" placeholder="Search" onChange={handleSearch} />
+        </InputGroup>
+      </Box>
+        }
 
         <Box
           width="50%"

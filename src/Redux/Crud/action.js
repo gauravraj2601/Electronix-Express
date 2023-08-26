@@ -19,7 +19,7 @@ export const addReview=(id, review)=>(dispatch)=>{
 
   return (
     axios
-    .post(`https://electronix-express-api.onrender.com/products/${id}`,review)
+    .post(`https://electronix-express-api.onrender.com/products/${id}`,{review:review})
     .then((res)=>{
       dispatch({type:REVIEW_ADD,payload:res.data})
     })

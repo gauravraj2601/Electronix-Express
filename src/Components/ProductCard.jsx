@@ -32,7 +32,9 @@ const ProductCard = ({id,image,name, category, review,company, price}) => {
             <h5>₹ {price}</h5>
         <div className='wishlist-cart'>
           <Icon as={FiHeart} boxSize={6} color='gray.500' _hover={{ color: 'red.500' }} />
+          <Link to="/cartitems">
           <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
+          </Link>
         </div>      
         </div>
 
