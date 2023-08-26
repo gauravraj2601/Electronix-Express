@@ -16,7 +16,7 @@ const AllRoutes = () => {
         <Route path="/" element={<HomePage />} />\
         <Route path="/product" element={<Products />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/singleproduct/:id" element={<SingleProducts />} />
+        <Route path="/singleproduct/:id/:averageRating" element={<SingleProducts />} />
         <Route path='/cartitems' element={
                     <PrivateRoute>
                         <CartItems />
