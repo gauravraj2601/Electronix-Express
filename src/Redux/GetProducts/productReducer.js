@@ -11,11 +11,11 @@ const initialState={
 export const productReducer=(state=initialState,{type,payload})=>{
     switch(type){
         case GET_REQ:
-            return {...state, isLoadin:true, isError:false}
+            return {...state, isLoading:true, isError:false}
         case GET_FAILURE:
-            return {...state, isLoadin:false, isError:true, errorMessage:payload}
+            return {...state, isLoading:false, isError:true, errorMessage:payload}
         case GET_SUCCESS:
-            return {...state, isLoadin:false, products:payload, isError:false}
+            return {...state, isLoading:false, products:payload, isError:false}
         default:
             return state;
     }

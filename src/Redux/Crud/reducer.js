@@ -13,7 +13,9 @@ const initialState = {
         };
       // Handle other actions if needed
       case REVIEW_ADD:
-        return {...state,products:[...state.reviews,action.payload]}
+        return {...state,products:state.products.map((product)=>
+          product.id=== action.payload.id? {...product, review:action.payload.review}: product
+          )}
       default:
         return state;
     }
