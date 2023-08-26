@@ -7,12 +7,14 @@ import {
 //   RangeSliderFilledTrack,
 //   RangeSliderThumb,
 } from '@chakra-ui/react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const Sidebar = ({minPrice, maxPrice}) => {
     const [searchParams, setSearchParams]= useSearchParams();
     const [category, setCategory]= useState(searchParams.getAll("category") || [])
     const [company, setCompany] =useState(searchParams.getAll("company") || [])
+    const {categorys} = useParams();
+    console.log(category)
     
     const [range, setRange] = useState([
         searchParams.get("price_gte") || '',
@@ -78,6 +80,10 @@ const handleFiltering=()=>{
           setSearchParams(params)
 }
 
+useEffect(()=>{
+category.push(categorys)
+handleFiltering()
+},[categorys])
 
 
   return (

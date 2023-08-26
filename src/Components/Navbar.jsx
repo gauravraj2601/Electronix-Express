@@ -12,19 +12,22 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import logo  from "./Images/Navbar_Logo.jpg"
+import logo from "./Images/Navbar_Logo.jpg";
 
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const Navbar = () => {
   const isAuth = useSelector((store) => store.authReducer.isAuth);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const handleLogo = () => {
+    <Navigate to="/" />;
+  };
   const navList = [
     { to: "/", title: "Home" },
-    { to: "/product", title: "AllProduct" },
+    { to: "/product/:categorys", title: "AllProduct" },
     { to: "/wishlist", title: "WishList" },
     { to: "/cartitems", title: "Cart" },
   ];
@@ -53,8 +56,10 @@ const Navbar = () => {
           {/* <img src={logo} alt="logo" /> */}
           <Heading
             fontSize={{ lg: "20px", md: "18px", sm: "15px", base: "15px" }}
-            fontFamily="Sofia" sans-serif
+            fontFamily="Sofia"
+            sans-serif
             textShadow="3px 3px 3px #ababab"
+            onClick={handleLogo}
           >
             Express Electronics
           </Heading>
@@ -105,17 +110,13 @@ const Navbar = () => {
         {/* </Box> */}
 
         {/* Drawer for mobile size Screen */}
-        <Box
-          display={{ lg: "none", md: "none", sm: "flex", base: "flex" }}
-          // backgroundColor={{lg:"none" , md:"none" , sm :"teal" ,base:"teal"}}
-        >
+        <Box display={{ lg: "none", md: "none", sm: "flex", base: "flex" }}>
           <Button bg="blackAlpha.500" color="white" onClick={onOpen}>
             {<HamburgerIcon />}
           </Button>
           <Drawer isOpen={isOpen} placement="Right" onClose={onClose}>
             <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton />
+            <DrawerContent onClick={onClose} height="300px">
               <DrawerBody>
                 <Box display="flex" flexDirection="column">
                   {" "}
@@ -128,6 +129,8 @@ const Navbar = () => {
                         return {
                           fontWeight: isActive ? "bold" : "",
                           color: isPending ? "red" : "black",
+                          marginTop: "20px",
+                          textAlign: "center",
                         };
                       }}
                     >
@@ -143,6 +146,7 @@ const Navbar = () => {
                     <Text
                       fontFamily="Open Sans sans-serif"
                       border="1px solid blue"
+                      marginTop="20px"
                       // onClick={handleLogout}
                     >
                       Logout
@@ -156,6 +160,8 @@ const Navbar = () => {
                         return {
                           fontWeight: isActive ? "bold" : "",
                           color: isPending ? "red" : "black",
+                          marginTop: "20px",
+                          textAlign: "center",
                         };
                       }}
                     >
