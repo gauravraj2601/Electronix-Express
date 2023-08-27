@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../Redux/Crud/action';
 import styled from 'styled-components';
+import { getProducts } from '../Redux/GetProducts/action';
 
 const EditForm = ({Id}) => {
   const dispatch = useDispatch();
@@ -30,18 +31,30 @@ const EditForm = ({Id}) => {
         // Highlights: foundProduct?.Highlights.join('\n'),
       });
     }
-  }, [Id, products]);
+  }, [Id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const updatedProductData = {
       ...product,
-      color: product.color.split(','),
-      Highlights: product.Highlights.split('\n'),
+      // color: product.color.split(','),
+      // Highlights: product.Highlights.split('\n'),
     };
 
-    // dispatch(editProduct(updatedProductData));
+    dispatch(editProduct(Id,updatedProductData)).then(()=>{
+         dispatch(getProducts())
+    });
+
+     setProduct({
+      name: '',
+      category: '',
+      price: '',
+      company: '',
+      image: '',
+      color: [],
+      Highlights: [],
+    })
   };
 
   const handleInputChange = (e) => {
@@ -60,6 +73,7 @@ const EditForm = ({Id}) => {
       <input
         type="text"
         id="productName"
+        name="name"
         value={product.name}
         onChange={handleInputChange}
         required
@@ -69,6 +83,7 @@ const EditForm = ({Id}) => {
       <input
         type="text"
         id="productCategory"
+        name="category"
         value={product.category}
         onChange={handleInputChange}
         required
@@ -78,6 +93,7 @@ const EditForm = ({Id}) => {
       <input
         type="number"
         id="productPrice"
+        name="price"
         value={product.price}
         onChange={handleInputChange}
         required
@@ -87,6 +103,7 @@ const EditForm = ({Id}) => {
       <input
         type="text"
         id="productCompany"
+        name="company"
         value={product.company}
         onChange={handleInputChange}
         required
@@ -96,6 +113,7 @@ const EditForm = ({Id}) => {
       <input
         type="url"
         id="productImage"
+        name="image"
         value={product.image}
         onChange={handleInputChange}
         required
@@ -105,6 +123,7 @@ const EditForm = ({Id}) => {
       <input
         type="text"
         id="productColors"
+        name="color"
         value={product.color}
         onChange={handleInputChange}
         required
@@ -113,6 +132,7 @@ const EditForm = ({Id}) => {
       <label >Product Highlights (Line-separated):</label>
       <textarea
         id="productHighlights"
+        name="Highlights"
         value={product.Highlights.join('\n')}
         onChange={handleInputChange}
         required

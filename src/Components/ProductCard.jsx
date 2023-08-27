@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import EditForm from './EditForm';
 
-const ProductCard = ({id,image,name, category, review,company, price,handleEdit}) => {
+const ProductCard = ({id,image,name, category, review,company, price,handleEdit,handleDelete}) => {
   const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;
    
   const isAuthAdmin=useSelector(store=>store.authReducer.isAuthAdmin);
@@ -42,7 +42,7 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit}
           { isAuthAdmin &&
                 <div> 
                  <Button onClick={()=>handleEdit(id)}>Edit</Button>
-                 <Button>Delete</Button> 
+                 <Button onClick={()=>handleDelete(id)}>Delete</Button> 
                  </div>  }
         <div className='wishlist-cart'>
           <Icon as={FiHeart} boxSize={6} color='gray.500' _hover={{ color: 'red.500' }} />

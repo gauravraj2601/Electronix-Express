@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../Redux/Crud/action';
 import styled from 'styled-components';
+import { getProducts } from '../Redux/GetProducts/action';
 
 const AddForm = () => {
   const [productName, setProductName] = useState('');
@@ -27,7 +28,9 @@ const AddForm = () => {
       Highlights: productHighlights,
     };
 
-    dispatch(addProduct(productData));
+    dispatch(addProduct(productData)).then(()=>{
+       dispatch(getProducts())
+    });
     // Reset form fields
     setProductName('');
     setProductCategory('');

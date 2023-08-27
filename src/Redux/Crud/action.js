@@ -27,3 +27,31 @@ export const addReview=(id, review)=>(dispatch)=>{
     .catch((err)=>dispatch({type:GET_FAILURE}))
   )
 }
+
+export const deleteProduct=(id)=>(dispatch)=>{
+     dispatch({type:GET_REQ})
+     return (
+      axios
+      .delete(`https://electronix-express-api.onrender.com/products/${id}`).then((res)=>{
+         console.log(res)
+         alert("delete")
+      }).catch((error)=>{
+        dispatch({type:GET_FAILURE})
+      })
+     )
+}
+
+export const editProduct=(id,user)=>(dispatch)=>{
+  dispatch({type:GET_REQ})
+  return (
+   axios
+   .patch(`https://electronix-express-api.onrender.com/products/${id}`,user).then((res)=>{
+      console.log(res)
+      alert("edited")
+   }).catch((error)=>{
+     dispatch({type:GET_FAILURE})
+   })
+  )
+}
+
+

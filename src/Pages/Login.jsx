@@ -185,7 +185,7 @@ const Containers=styled.div`
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 50%;
-  margin-top:100px;
+  margin-top:150px;
   margin-left: 17%;
   margin-bottom:100px;
 }
