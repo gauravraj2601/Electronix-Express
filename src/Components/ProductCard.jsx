@@ -11,9 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, addToWishlist } from '../Redux/GetProducts/action';
 
 
-import EditForm from './EditForm';
-
-
 const ProductCard = ({id,image,name, category, review,company, price,handleEdit,handleDelete}) => {
 
   const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;

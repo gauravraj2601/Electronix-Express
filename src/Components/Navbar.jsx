@@ -11,7 +11,7 @@ import {
   Button,
   Heading,
   Input,
-  InputGroup, InputLeftElement 
+  InputGroup, InputLeftElement, ButtonGroup 
 } from "@chakra-ui/react";
 
 
@@ -23,26 +23,28 @@ import {
 import { HamburgerIcon, SearchIcon  } from "@chakra-ui/icons";
 import debounce from "lodash/debounce";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, useSearchParams,Navigate  } from "react-router-dom";
 
 import { styled } from "styled-components";
+import { logoutAction } from "../Redux/Authentication/action";
 
 const Navbar = () => {
   const isAuth = useSelector((store) => store.authReducer.isAuth);
+  const isAdminAuth= useSelector(store=>store.authReducer.isAuthAdmin)
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const location= useLocation();
   const [search, setSearch]= useState("");
   const [searchParams, setSearchParams]= useSearchParams();
-
+  const dispatch= useDispatch();
   const name=useSelector(store=>store.authReducer.name);
   console.log(name)
 
 
   const navList = [
     { to: "/", title: "Home" },
-    { to: "/product/:categorys", title: "AllProduct" },
+    { to: isAdminAuth? "/admin": "/product", title: isAdminAuth? "Admin" : "AllProduct" },
     { to: "/wishlist", title: "WishList" },
     { to: "/cartitems", title: "Cart" },
   ];
@@ -55,7 +57,9 @@ const Navbar = () => {
     const {value}=e.target;
     debouncedSetSearch(value); 
   }
-  
+  const handleLogout=()=>{
+    dispatch(logoutAction())
+  }
   useEffect(()=>{
     let params={
     }
@@ -113,7 +117,8 @@ const Navbar = () => {
           display={{ lg: "flex", md: "flex", sm: "none", base: "none" }}
           justifyContent="space-around"
         >
-          {navList.map((link) => (
+          {navList.map((link, index) => (
+            
             <NavLink
               key={link.to}
               to={link.to}
@@ -130,11 +135,14 @@ const Navbar = () => {
           ))}
           {/* Logic for userName Disaplayed as login */}
 
-          {isAuth && <Text fontFamily="Open Sans sans-serif">{name}</Text>}
+          {isAuth && <Text fontSize="17px" fontWeight="bold" color="teal" fontFamily="Open Sans sans-serif">{name}</Text>}
 
           {/* Login and LogOut Logic */}
-          {isAuth ? (
-            <NavLink>LogOut</NavLink>
+          {isAuth || isAdminAuth ? (
+            <button style={{color:"red", fontWeight:"bold"}} onClick={handleLogout}>
+
+              <NavLink>LogOut</NavLink>
+            </button>
           ) : (
             <NavLink
               to={"/login"}

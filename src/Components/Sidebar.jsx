@@ -18,7 +18,7 @@ const Sidebar = ({minPrice, maxPrice}) => {
     const [category, setCategory]= useState(searchParams.getAll("category") || [])
     const [company, setCompany] =useState(searchParams.getAll("company") || [])
 
-    const {categorys} = useParams();
+    const {cate} = useParams();
     console.log(category)
     
 
@@ -81,14 +81,18 @@ const handleOrder=(e)=>{
 
 const handleFiltering=()=>{
   let params={
-              category,
-              company
-          }
-          order && (params.order=order)
+    company
+  }
+    category && (params.category=category)
+      order && (params.order=order)
           
-          setSearchParams(params)
+      setSearchParams(params)
+    // if(cate){
+    //   category.push(cate)
+    // }
 }
  const handleClearFiltering=()=>{
+  
   setCategory([]);
   setCompany([]);
   setOrder('');
@@ -96,10 +100,10 @@ const handleFiltering=()=>{
   navigate('/product');
  }
 
-useEffect(()=>{
-category.push(categorys)
-handleFiltering()
-},[categorys])
+// useEffect(()=>{
+// cate!=="" && category.push(cate)
+// // handleFiltering()
+// },[cate])
 
 
   return (

@@ -70,7 +70,9 @@ const HomePage = () => {
             </Box>
           </Link>
 
+
           <Link to="/product">
+
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/511mMK0LW2L._AC_UY327_FMwebp_QL65_.jpg"
@@ -82,6 +84,7 @@ const HomePage = () => {
           </Link>
 
           <Link to="/product">
+
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/51DmOWr3rnL._AC_UL600_FMwebp_QL65_.jpg"
@@ -92,7 +95,9 @@ const HomePage = () => {
             </Box>
           </Link>
 
+
           <Link to="/product">
+
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"

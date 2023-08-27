@@ -26,6 +26,7 @@ const WishList = () => {
   }
   return (
     <DIV>
+        {wishlistProducts.length===0 && <div style={{width:"100%",height:"150px"}}><h1 style={{marginTop:"120px", fontWeight:"700", fontSize:"20px"}}>No Product in Wishlist</h1></div> }
           {wishlistProducts?.map((el)=>{
             return <WishListCard key={el.id} {...el} handleAddtoCart={handleAddtoCart} handleRemove={handleRemove}/>
           })}

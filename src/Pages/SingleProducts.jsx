@@ -130,9 +130,9 @@ const SingleProducts = () => {
           </p>
         </div>
 
-        <div>
+        {/* <div>
           <h2>Color</h2>
-        </div>
+        </div> */}
 
         <div>
           <h2>Highlights</h2>

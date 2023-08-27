@@ -1,5 +1,5 @@
 import axios from "axios"
-import { LOGIN_FAILURE, LOGIN_REGISTER_SUCCESS, LOGIN_REQ, LOGIN_SUCCESS_ADMIN, LOGIN_SUCCESS_USER } from "./actionTypes"
+import { LOGIN_FAILURE, LOGIN_REGISTER_SUCCESS, LOGIN_REQ, LOGIN_SUCCESS_ADMIN, LOGIN_SUCCESS_USER, LOG_OUT } from "./actionTypes"
 
 export const adminLogin=(admin)=>(dispatch)=>{
      dispatch({type:LOGIN_REQ})
@@ -51,4 +51,8 @@ export const userRegister=(newUser)=>(dispatch)=>{
             dispatch({type:LOGIN_FAILURE})
         })
     )
+}
+
+export const logoutAction=()=>(dispatch)=>{
+   return  dispatch({type:LOG_OUT})
 }
