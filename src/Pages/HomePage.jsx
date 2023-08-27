@@ -1,4 +1,4 @@
-import { Box, Button, Container, Heading, Image } from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Image, Text } from "@chakra-ui/react";
 
 import React, { useEffect } from "react";
 import { styled } from "styled-components";
@@ -7,11 +7,10 @@ import { getProducts } from "../Redux/GetProducts/action";
 import ProductCard from "../Components/ProductCard";
 import { Link } from "react-router-dom";
 
-
 const HomePage = () => {
   const products = useSelector((store) => store.productReducer.products);
   const isLoading = useSelector((store) => store.productReducer.isLoading);
- 
+
   const dispatch = useDispatch();
   console.log(products);
   useEffect(() => {
@@ -36,6 +35,7 @@ const HomePage = () => {
           sans-serif
           marginLeft={{ lg: "130px", md: "130px" }}
           marginBottom="40px"
+          color="teal"
         >
           Trending Categories
         </Heading>
@@ -70,7 +70,9 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="product">
+
+          <Link to="/product">
+
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/511mMK0LW2L._AC_UY327_FMwebp_QL65_.jpg"
@@ -81,7 +83,8 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="product">
+          <Link to="/product">
+
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/51DmOWr3rnL._AC_UL600_FMwebp_QL65_.jpg"
@@ -92,7 +95,9 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="product">
+
+          <Link to="/product">
+
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"
@@ -108,23 +113,30 @@ const HomePage = () => {
       <br />
       <Container
         display="flex"
-        // border="1px solid red"
         justifyContent="space-around"
         maxW="1300px"
         gap="30px"
         flexDirection={{ lg: "row", md: "row", sm: "column", base: "column" }}
       >
         <Box
-          // border="1px solid red"
           width={{ lg: "45%", md: "45%", sm: "100%", base: "100%" }}
           className="ndProducts"
         >
-          <p>Smart Camera</p> <br />
-          <p>just strting at 450</p> <br />
-          <Button>Shop now</Button> <br />
+          <Text color="teal" fontWeight="bold">
+            Smart Television
+          </Text>{" "}
+          <br />
+          <Text fontWeight="bold">just strting at ₹ 450</Text> <br />
+          <Link to="/product">
+            {" "}
+            <Button variant="outline" colorScheme="teal">
+              Shop now
+            </Button>
+          </Link>
+          <br />
           <br />
           <Image
-            src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"
+            src="https://rukminim2.flixcart.com/image/312/312/xif0q/television/9/3/i/qa85qn90cakxxl-samsung-original-imagp9xdrcnf5rx9.jpeg?q=70"
             alignItems="center"
             objectFit="cover"
             height="200px"
@@ -135,12 +147,21 @@ const HomePage = () => {
           className="ndProducts"
           width={{ lg: "45%", md: "45%", sm: "100%", base: "100%" }}
         >
-          <p>Smart Camera</p> <br />
-          <p>just strting at 450</p> <br />
-          <Button>Shop now</Button> <br />
+          <Text color="teal" fontWeight="bold">
+            Smart Watch
+          </Text>{" "}
+          <br />
+          <Text fontWeight="bold">just strting at ₹ 450</Text> <br />
+          <Link to="/product">
+            {" "}
+            <Button variant="outline" colorScheme="teal">
+              Shop now
+            </Button>
+          </Link>{" "}
+          <br />
           <br />
           <Image
-            src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"
+            src="https://rukminim2.flixcart.com/image/612/612/ko0d6kw0/smartwatch/r/m/a/1-59-fb511glpk-android-ios-fitbit-original-imag2kfgsfyq6ec6.jpeg?q=70"
             alignItems="center"
             objectFit="cover"
             height="200px"
@@ -151,7 +172,7 @@ const HomePage = () => {
       <br />
       <br />
       <Container maxW="1300px">
-        <Heading textAlign="left" fontFamily="'Trirong', serif" sans-serif>
+        <Heading textAlign="left" fontFamily="'Trirong', serif" sans-serif color="teal">
           Latest Product
         </Heading>{" "}
         <br />
@@ -180,7 +201,7 @@ const HomePage = () => {
       </Box>{" "}
       <br /> <br /> <br />
       <Container maxW="1300px">
-        <Heading textAlign="left" fontFamily="'Trirong', serif" sans-serif>
+        <Heading textAlign="left" fontFamily="'Trirong', serif" sans-serif color="teal">
           Popular Product
         </Heading>{" "}
         <br />
@@ -206,7 +227,6 @@ const HomePage = () => {
       <br />
       <Container
         display="flex"
-        border="1px solid red"
         justifyContent="space-around"
         maxW="1300px"
         gap="30px"
@@ -251,7 +271,6 @@ const HomePage = () => {
         </Box>
       </Container>{" "}
       <br /> <br />
-    
     </DIV>
   );
 };
@@ -280,6 +299,7 @@ const DIV = styled.div`
     margin-bottom: 40px;
     text-align: center;
     align-items: center;
+    font-weight: bold;
   }
   .trend_1 {
     margin-top: 60px;
