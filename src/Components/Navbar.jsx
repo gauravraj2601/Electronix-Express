@@ -67,12 +67,12 @@ const Navbar = () => {
     <DIV>
       <Box
         bg="blackAlpha.500"
-        filter="transparent"
+       
         p={5}
         color="black"
         display="flex"
         justifyContent="space-between"
-        // border="1px solid red"
+       
         width="100%"
         backgroundColor={{
           lg: "blackAlpha.500",
@@ -89,7 +89,7 @@ const Navbar = () => {
             fontFamily="Sofia"
             sans-serif
             textShadow="3px 3px 3px #ababab"
-            // onClick={handleLogo}
+          
           >
             Express Electronics
           </Heading>
@@ -226,4 +226,16 @@ export default Navbar;
 const DIV = styled.div`
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0px;
+  z-index:1;
+
+ 
+  /* background:black; */
+
+ 
+  * {
+    font-family: "Trirong", serif;
+  }
+
 `;

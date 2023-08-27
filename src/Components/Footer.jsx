@@ -14,10 +14,7 @@ export const Footer = () => {
         <Box display="flex" justifyContent="space-between"  flexDirection={{lg:"row" , md : "row" , sm : "column" , base : "column" }} textAlign={{lg:"left" , md :"flex" , sm :"center" , base : "center"}}>
 <Box   fontFamily="Sofia" sans-serif>Express Electronics</Box>
 <Box display="flex" justifyContent="space-around">
-    <Box>Fcaebook</Box>
-    <Box>Fcaebook</Box>
-    <Box>Fcaebook</Box>
-    <Box>Fcaebook</Box>
+   
 </Box>
 
         </Box>
