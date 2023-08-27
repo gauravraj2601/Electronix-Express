@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 import CartCard from '../Components/CartCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {  removeFromCart } from '../Redux/GetProducts/action';
+import { Button } from '@chakra-ui/react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CartItems = () => {
   const cartProducts= useSelector(store=>store.productReducer.cart)
@@ -10,8 +12,13 @@ const CartItems = () => {
   console.log(cartProducts)
   const cartTotal= cartProducts?.reduce((acc,curr)=>acc+curr.price,0)
   console.log(cartTotal)
+  const navigate= useNavigate()
   const handleRemove=(id)=>{
       dispatch(removeFromCart(id))
+  }
+  const handleProcced = () =>{
+navigate('/user_payment')
+
   }
   return (
     <DIV>
@@ -19,7 +26,8 @@ const CartItems = () => {
         {cartProducts?.map((el)=>(
           <CartCard  key={el.id} {...el} handleRemove={handleRemove}/>
 
-        ))}
+        ))} <br /><br />
+        <Button width="400px" bg="#c36319" color='white' onClick={handleProcced}>proceed</Button> <br /><br />
       </div>
       <div className='cart-total'>
         <h4>PRICE DETAILS</h4>
