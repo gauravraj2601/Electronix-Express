@@ -1,7 +1,7 @@
 # gusty-adjustment-6018
 # Electronic Online Shop Web Application
 
-Welcome to the Electronic Online Shop web application! This application is built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features, this app aims to revolutionize online electronic shopping. Read on to learn more about its components, features, and how to get started.
+Welcome to Express Electronics! This application is built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features, this app aims to revolutionize online electronic shopping. Read on to learn more about its components, features, and how to get started.
 
 ## Table of Contents
 
@@ -46,6 +46,11 @@ Welcome to the Electronic Online Shop web application! This application is built
 6. **Admin Panel**
    - A secure section for administrators to manage products.
    - Admins can add new products, edit existing ones and also delete existing products
+
+7. **Login Page**
+   - Handles user and admin authentication.
+   - Existing users can log in.
+   - New users can register for an account.
 
 ## Authentication
 User Authentication: Users can create accounts and log in to access personalized features like shopping carts and wishlists.

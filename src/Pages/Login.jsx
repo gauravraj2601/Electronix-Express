@@ -44,9 +44,17 @@ const Login = () => {
     };
     e.preventDefault();
     if (showLogin) {
-      dispatch(userLogin(user));
+       if(user.password.length>4){
+         dispatch(userLogin(user));
+       }else{
+        alert("check password")
+       }
     } else {
-      dispatch(userRegister(newUser));
+        if(password===confirmPassword && newUser.password.length>4){
+          dispatch(userRegister(newUser));
+        }else{
+          alert("check password")
+        }
     }
   };
 
@@ -61,7 +69,11 @@ const Login = () => {
       email: adminEmail,
       password: adminPassword,
     };
-    dispatch(adminLogin(obj));
+    if(obj.password.length>4){
+      dispatch(adminLogin(obj));
+    }else{
+      alert("at lest 4 character required for password")
+    }
   };
 
   if (isAuthAdmin) {
@@ -186,8 +198,8 @@ const Containers=styled.div`
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 50%;
-  margin-top:150px;
+  width: 45%;
+  margin-top: ${({showAdmin})=>((showAdmin)? "300px":"100px")};
   margin-left: 17%;
   margin-bottom:100px;
 }
