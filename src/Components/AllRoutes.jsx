@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddForm from "../Pages/Admin";
 import Admin from "../Pages/Admin";
 import { PageNotFound } from "../Pages/NotFoundPage";
+import { PaymentPage } from "../Pages/PaymentPage";
 
 const AllRoutes = () => {
   return (
@@ -38,6 +39,7 @@ const AllRoutes = () => {
         }
       />
       <Route path="/login" element={<Login />} />
+      <Route path="/user_payment" element={<PaymentPage />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

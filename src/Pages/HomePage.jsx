@@ -7,10 +7,11 @@ import { getProducts } from "../Redux/GetProducts/action";
 import ProductCard from "../Components/ProductCard";
 import { Link } from "react-router-dom";
 
+
 const HomePage = () => {
   const products = useSelector((store) => store.productReducer.products);
   const isLoading = useSelector((store) => store.productReducer.isLoading);
-  // console.log(isLoading)
+ 
   const dispatch = useDispatch();
   console.log(products);
   useEffect(() => {
@@ -250,6 +251,7 @@ const HomePage = () => {
         </Box>
       </Container>{" "}
       <br /> <br />
+    
     </DIV>
   );
 };

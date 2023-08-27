@@ -7,7 +7,6 @@ export const Footer = () => {
     <DIV>
       <Container
         maxW="1500px"
-        border="1px solid red"
         padding="50px 50px"
         bg="#212121"
         color="white"

@@ -12,29 +12,51 @@ import {
   useDisclosure,
   Heading,
 } from "@chakra-ui/react";
+import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export const PaymentPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate()
   const handlePayment = (e) => {
     e.preventDefault();
     onOpen();
+    setTimeout(()=>{
+navigate('/')
+    },2000)
   };
 
-  return (
-    <>
-      <Container border="1px solid red" maxW="1200px">
-        <p>Payment Details</p>
+  document.body.style.backgroundImage =
+    "url(https://img.freepik.com/free-vector/white-abstract-background_23-2148817571.jpg?w=1060&t=st=1690173262~exp=1690173862~hmac=6d5cd69733f40fb9db2dd6a46ef7a5a2c437edfdba125f9292746e4bbe5d518d)";
 
-        <Box display="flex" justifyContent="center" gap="20px">
+  return (
+    <DIV>
+      <Container maxW="1200px">
+        {" "}
+        <br />
+        <br />
+        <p className="payment_Text">Payment Details</p> <br />
+        <br />
+        <Box
+          display="flex"
+          justifyContent="center"
+          gap="20px"
+          flexDirection={{ lg: "row", md: "row", sm: "column", base: "column" }}
+        >
           <Button width="300px" bg="white" variant="outline" colorScheme="teal">
             Paypal
           </Button>
           <Button width="300px" bg="black" colorScheme="teal">
             GooglePay
           </Button>
-        </Box>
-        <p>Or Checkout using a Credit Card</p>
-        <Container border="1px solid blue">
+        </Box>{" "}
+        <br /> <br />
+        <p className="payment_Text">Or Checkout using a Credit Card</p> <br />
+        <br />
+        <Container
+          padding="30px"
+          boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+        >
           <Box>
             <form onSubmit={handlePayment}>
               <FormLabel>Cardholder name</FormLabel>
@@ -56,14 +78,31 @@ export const PaymentPage = () => {
                 minLength="6"
               />{" "}
               <br /> <br />
+              <FormLabel>Address</FormLabel>
+              <Input
+                type="text"
+                placeholder="door no/locality/city"
+                minLength="3"
+              />{" "}
+              <br />
+              <br />
               <Button width="300px" colorScheme="teal" type="submit">
                 Make Payment
-              </Button>
+              </Button>{" "}
+              <br />
+              <br />
             </form>
-            // modal
+            {/* modal */}
             <Modal isOpen={isOpen}>
               <ModalOverlay />
               <ModalContent>
+                <Center>
+                  <img
+                    src="https://media3.giphy.com/media/1wX5TJZPqVw3HhyDYn/giphy.gif?cid=6c09b952tdbgt7fl8aiz8lqol27kr4hi3ilgb5dft7e8crix&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s"
+                    alt=""
+                    width="100px"
+                  />{" "}
+                </Center>
                 <ModalBody>
                   <Center>
                     <br />
@@ -101,7 +140,18 @@ export const PaymentPage = () => {
             </Modal>
           </Box>
         </Container>
-      </Container>
-    </>
+      </Container>{" "}
+      <br />
+      <br />
+      <br />
+      <br />
+    </DIV>
   );
 };
+
+const DIV = styled.div`
+  .payment_Text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;

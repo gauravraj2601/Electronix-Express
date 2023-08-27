@@ -86,7 +86,7 @@ const Navbar = () => {
             fontFamily="Sofia"
             sans-serif
             textShadow="3px 3px 3px #ababab"
-            onClick={handleLogo}
+            // onClick={handleLogo}
           >
             Express Electronics
           </Heading>
