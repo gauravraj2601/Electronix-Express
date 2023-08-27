@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_FAILURE, GET_REQ, GET_SUCCESS, url } from "./actionTypes";
+import { ADD_TO_CART, ADD_TO_WISHLIST, GET_FAILURE, GET_REQ, GET_SUCCESS, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST, url } from "./actionTypes";
 
 
 
@@ -15,8 +15,24 @@ export const getProducts=(paramObj)=>(dispatch)=>{
         dispatch({type:GET_FAILURE,payload:err.message})
     })
 }
+    // Add to CART
+export const addToCart=(payload)=>(dispatch)=>{
+    dispatch({type:ADD_TO_CART,payload})
+}
+export const removeFromCart = (productId) =>(dispatch)=> (
+    dispatch({type: REMOVE_FROM_CART,
+        payload: productId})
+  )
 
+//   Add to Wishlist
 
+export const addToWishlist=(payload)=>(dispatch)=>{
+    dispatch({type:ADD_TO_WISHLIST, payload})
+}
+
+export const removeFromWishlist=(productId)=>(dispatch)=>{
+        dispatch({type:REMOVE_FROM_WISHLIST, payload:productId})
+}
 
 
 // export const GET_REQ= "GET_REQ";

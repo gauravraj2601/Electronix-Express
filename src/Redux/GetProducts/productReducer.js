@@ -1,21 +1,31 @@
-import { GET_FAILURE, GET_REQ, GET_SUCCESS } from "./actionTypes"
+import { ADD_TO_CART, ADD_TO_WISHLIST, GET_FAILURE, GET_REQ, GET_SUCCESS, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST } from "./actionTypes"
 
 
 const initialState={
     products:[],
     isLoading:false,
     isError:false,
-    errorMessage:""
+    errorMessage:"",
+    cart:[],
+    wishlist:[]
 }
 
 export const productReducer=(state=initialState,{type,payload})=>{
     switch(type){
         case GET_REQ:
-            return {...state, isLoadin:true, isError:false}
+            return {...state, isLoading:true, isError:false}
         case GET_FAILURE:
-            return {...state, isLoadin:false, isError:true, errorMessage:payload}
+            return {...state, isLoading:false, isError:true, errorMessage:payload}
         case GET_SUCCESS:
-            return {...state, isLoadin:false, products:payload, isError:false}
+            return {...state, isLoading:false, products:payload, isError:false}
+        case ADD_TO_CART:
+            return {...state,cart: [...state.cart,payload]};
+        case ADD_TO_WISHLIST:
+            return {...state,wishlist:[...state.wishlist,payload]}
+        case REMOVE_FROM_WISHLIST:
+            return {...state,wishlist:state.wishlist.filter(item=>item.id!==payload)}
+        case REMOVE_FROM_CART:
+            return {...state, cart: state.cart.filter(item=>item.id !==payload)}
         default:
             return state;
     }

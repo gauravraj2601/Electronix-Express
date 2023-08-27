@@ -1,4 +1,4 @@
-import { PRODUCT_ADDED, REVIEW_ADD } from "./actionType";
+import { PRODUCT_ADDED, REVIEW_ADD, UPDATE_PRODUCT_WITH_NEW_REVIEW } from "./actionType";
 
 const initialState = {
     products: []
@@ -13,7 +13,17 @@ const initialState = {
         };
       // Handle other actions if needed
       case REVIEW_ADD:
-        return {...state,products:[...state.reviews,action.payload]}
+        return {
+          ...state,
+          products: state.products.map((product) =>
+            product.id === action.payload.productId
+              ? {
+                  ...product,
+                  review: [...product.review, action.payload.newReview],
+                }
+              : product
+          ),
+        };
       default:
         return state;
     }

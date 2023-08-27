@@ -1,28 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import {
-  Input,
+// import {
+//   Input,
 //    RangeSlider,
 //   RangeSliderTrack,
 //   RangeSliderFilledTrack,
 //   RangeSliderThumb,
-} from '@chakra-ui/react';
-import { useSearchParams } from 'react-router-dom';
+
+// } from '@chakra-ui/react';
+import { useSearchParams, useNavigate,useParams } from 'react-router-dom';
+
 
 const Sidebar = ({minPrice, maxPrice}) => {
     const [searchParams, setSearchParams]= useSearchParams();
+    const navigate = useNavigate();
+
     const [category, setCategory]= useState(searchParams.getAll("category") || [])
     const [company, setCompany] =useState(searchParams.getAll("company") || [])
+
+    const {categorys} = useParams();
+    console.log(category)
     
+
+    const [order, setOrder] = useState(searchParams.get("order") || "")
+
+    
+    /*
+
     const [range, setRange] = useState([
         searchParams.get("price_gte") || '',
         searchParams.get("price_lte") || ''
     ]);
 
-  
-//   const handleSliderChange = (newRange) => {
-//     setRange(newRange);
-//   };
+  const handleSliderChange = (newRange) => {
+    setRange(newRange);
+  };
 
   const handleMinInputChange = (value) => {
     const newMin = parseFloat(value);
@@ -37,7 +49,7 @@ const Sidebar = ({minPrice, maxPrice}) => {
       setRange([range[0], newMax]);
     }
   };
-
+*/
 
   const handleCategory=(e)=>{
         const {value}= e.target;
@@ -61,6 +73,10 @@ const Sidebar = ({minPrice, maxPrice}) => {
     }
     setCompany(newcompany)
 }
+const handleOrder=(e)=>{
+  const {value}= e.target;
+  setOrder(value);
+}
 
 
 const handleFiltering=()=>{
@@ -68,25 +84,54 @@ const handleFiltering=()=>{
               category,
               company
           }
-          if(range[0] !==0 && range[0]!== null && range[1] !== 0  && range[1]!== null){
-              params.price_gte= range[0];
-              params.price_lte=range[1];
-          }
-        //   if(range[1] !== 0  && range[1]!== null){
-        //   }
-      
+          order && (params.order=order)
+          
           setSearchParams(params)
 }
+ const handleClearFiltering=()=>{
+  setCategory([]);
+  setCompany([]);
+  setOrder('');
+  setSearchParams('');
+  navigate('/product');
+ }
 
+useEffect(()=>{
+category.push(categorys)
+handleFiltering()
+},[categorys])
 
 
   return (
     <DIV>
-      <div>Filter</div>
-      <div className='price'>
+      <div><h4>FILTERS</h4></div>
+      <h4>Sort By Price</h4>
+        <div  className='sort-price' onChange={handleOrder}>
+               <input type="radio"
+                        name='order'
+                        value={""}
+                        defaultChecked={order===""}
+                    />
+                    <label>Popularity</label>
+                    <br />
+                <input type="radio"
+                        name="order" 
+                        value={"asc"}
+                        defaultChecked={order==="asc"}
+                    />
+                <label>Low To High</label>
+                <br />
+                <input type="radio"
+                        name="order" 
+                        value={"desc"}
+                        defaultChecked={order==="desc"}
+                />
+                <label>High To Low</label>
+        </div>
+      {/* <div className='price'>
         <h4>Price Range</h4>
         
-        {/* <RangeSlider
+        <RangeSlider
           aria-label="price-range"
           min={minPrice}
           max={maxPrice+10000}
@@ -100,7 +145,7 @@ const handleFiltering=()=>{
           </RangeSliderTrack>
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
-        </RangeSlider> */}
+        </RangeSlider>
         <div className='price-range'>
         <Input
           type="number"
@@ -117,7 +162,7 @@ const handleFiltering=()=>{
           
         />
         </div>
-      </div>
+      </div> */}
       <div className='category-div'>
         <h4>CATEGORIES</h4> 
         <div>
@@ -193,7 +238,7 @@ const handleFiltering=()=>{
         </div>
       </div>
       <div className='company'>
-        <h4>company</h4>
+        <h4>BRANDS</h4>
         <div>
             <input type="checkbox"
                     value={"Samsung"}
@@ -227,7 +272,10 @@ const handleFiltering=()=>{
             <label>Microsoft</label>
         </div>
       </div>
+      <div className='button-div'>
       <button onClick={handleFiltering}>Apply Filter</button>
+      <button onClick={handleClearFiltering}>Clear Filter</button>
+      </div>
     </DIV>
   );
 };
@@ -236,7 +284,7 @@ export default Sidebar;
 
 const DIV = styled.div`
   /* Your styling here */
-
+text-align: start;
   .price-range{
     display: flex;
   }
@@ -255,13 +303,20 @@ const DIV = styled.div`
     text-align: start;
   }
   button{
-    font-weight: bold;
+    font-weight: 600;
     background-color: gray;
     border-radius: 15px;
-    width: 120px;
+    width: 80px;
     margin-top:10px;
     padding: 5px;
+    font-size: 12px;
   }
-
+  .sort-price{
+    text-align: start;
+  }
+.button-div{
+  display: flex;
+  justify-content: space-around;
+}
 
 `

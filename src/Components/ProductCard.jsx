@@ -4,11 +4,27 @@ import { styled } from 'styled-components';
 import { Box, Button, Icon } from '@chakra-ui/react';
 import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, addToWishlist } from '../Redux/GetProducts/action';
+
+
 import EditForm from './EditForm';
 
+
 const ProductCard = ({id,image,name, category, review,company, price,handleEdit,handleDelete}) => {
+
   const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;
+
+  const products= useSelector(store=>store.productReducer.products);
+  const cartItems= useSelector(store=>store.productReducer.cart);
+  const wishlistItems= useSelector(store=>store.productReducer.wishlist);
+
+
+  
+
+  const dispatch= useDispatch()
+
    
   const isAuthAdmin=useSelector(store=>store.authReducer.isAuthAdmin);
    
@@ -17,6 +33,28 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
   //   console.log("edit")
   // }
 
+
+  const handleCart=(id)=>{
+    if(cartItems.find((el)=>el.id===id)){
+      alert("Already Exist")
+    }
+    else{
+      const cart= products.find((el)=>el.id===id);
+      dispatch(addToCart(cart))
+      alert("Product Added To Cart")
+    }
+
+  }
+  const handleWishlist=(id)=>{
+    if(wishlistItems.find((el)=>el.id===id)){
+      alert("Already Exist")
+    }
+    else{
+      const wishlist=products.find((el)=>el.id===id);
+      dispatch(addToWishlist(wishlist));
+      alert("Added To Wishlist")
+    }
+  }
   return (
     <DIV isAuthAdmin={isAuthAdmin} className='card'>
       <Link to={`/singleproduct/${id}/${averageRating.toFixed(1)}`}>
@@ -45,9 +83,18 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
                  <Button onClick={()=>handleDelete(id)}>Delete</Button> 
                  </div>  }
         <div className='wishlist-cart'>
+          <button onClick={()=>handleWishlist(id)}>
           <Icon as={FiHeart} boxSize={6} color='gray.500' _hover={{ color: 'red.500' }} />
-          <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
-        </div>   
+
+          </button>
+
+
+            <button onClick={()=>handleCart(id)}>
+              <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
+            </button>
+
+        </div>      
+
         </div>
        
         
