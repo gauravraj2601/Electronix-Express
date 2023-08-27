@@ -71,9 +71,9 @@ Product Detail Endpoint: /singleproduct/:id
 
 
 ## Contributors
-Group Member 1
-Group Member 2
-Group Member 3
+Gaurav Raj
+Ganesh Kumar
+Akshay Ramoliya
 
 ## Deployment
 The app is deployed on Netlify. You can access it using the following link:
