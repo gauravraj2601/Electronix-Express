@@ -6,18 +6,21 @@ import SingleProducts from "../Pages/SingleProducts";
 import CartItems from "../Pages/CartItems";
 import WishList from "../Pages/WishList";
 import Login from "../Pages/Login";
-import PrivateRoute from "./PrivateRoute";
-import AddForm from "../Pages/Admin";
-import Admin from "../Pages/Admin";
+import PrivateRoute from "./PrivateRoute";import Admin from "../Pages/Admin";
 import { PageNotFound } from "../Pages/NotFoundPage";
 import { PaymentPage } from "../Pages/PaymentPage";
+import PrivateAdminRoute from "./PrivateAdminRoute";
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />\
-      <Route path="/product/:categorys" element={<Products />} />
-      <Route path="/admin" element={<Admin />} />
+      <Route path="/product" element={<Products />} />
+      <Route path="/admin" element={
+                <PrivateAdminRoute>
+                  <Admin />
+                </PrivateAdminRoute>
+              } />
       <Route
         path="/singleproduct/:id/:averageRating"
         element={<SingleProducts />}

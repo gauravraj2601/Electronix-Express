@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQ, LOGIN_SUCCESS_ADMIN, LOGIN_SUCCESS_USER } from "./actionTypes";
+import { LOGIN_FAILURE, LOGIN_REQ, LOGIN_SUCCESS_ADMIN, LOGIN_SUCCESS_USER, LOG_OUT } from "./actionTypes";
 
 
 const initialState = {
@@ -38,6 +38,8 @@ export const authReducer = (state = initialState, { type, payload }) => {
             
           }
         }
+        case LOG_OUT:
+          return {...state,isAuthAdmin:false, isAuth:false }
       default:
         return state;
     }

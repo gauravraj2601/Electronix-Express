@@ -45,7 +45,6 @@ let paramObj = {
         
 
     },[searchParams])
-    // console.log(products)
   return (
     <DIV>
         <div className='sidebar'>

@@ -48,7 +48,7 @@ const HomePage = () => {
           alignItems="center"
           marginTop={{ sm: "20px", base: "30px" }}
         >
-          <Link to="/product/smartphone">
+          <Link to="/product">
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/51eGaaoQ1mL._AC_SY200_.jpg"
@@ -59,7 +59,7 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="/product/speaker">
+          <Link to="/product">
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/61MbLLagiVL._AC_UY327_FMwebp_QL65_.jpg"
@@ -70,7 +70,7 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="product/tablet">
+          <Link to="product">
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/511mMK0LW2L._AC_UY327_FMwebp_QL65_.jpg"
@@ -81,7 +81,7 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="product/laptop">
+          <Link to="product">
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/51DmOWr3rnL._AC_UL600_FMwebp_QL65_.jpg"
@@ -92,7 +92,7 @@ const HomePage = () => {
             </Box>
           </Link>
 
-          <Link to="product/headphones">
+          <Link to="product">
             <Box>
               <Image
                 src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"
