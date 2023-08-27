@@ -9,10 +9,13 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const CartItems = () => {
   const cartProducts= useSelector(store=>store.productReducer.cart)
   const dispatch= useDispatch()
-  console.log(cartProducts)
+  // console.log(cartProducts)
   const cartTotal= cartProducts?.reduce((acc,curr)=>acc+curr.price,0)
-  console.log(cartTotal)
+<
+
+
   const navigate= useNavigate()
+
   const handleRemove=(id)=>{
       dispatch(removeFromCart(id))
   }
