@@ -148,7 +148,12 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  background-color: gray;
+  background-color: #a29d9d;
+  font-weight: bold;
+  h1{
+    color: white;
+    background-color: black;
+   }
 `;
 
 const Form = styled.form`
@@ -156,6 +161,13 @@ const Form = styled.form`
   flex-direction: column;
   gap: 10px;
   padding: 20px;
+
+  input {
+    border-radius: 5px;
+  }
+  textarea{
+    border-radius: 5px;
+  }
 `;
 
 const SubmitButton = styled.button`

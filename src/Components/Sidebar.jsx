@@ -103,7 +103,7 @@ handleFiltering()
 
 
   return (
-    <DIV>
+    <DIV className='sideBar'>
       <div><h4>FILTERS</h4></div>
       <h4>Sort By Price</h4>
         <div  className='sort-price' onChange={handleOrder}>

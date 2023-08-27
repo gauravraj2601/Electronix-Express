@@ -20,7 +20,7 @@ const Admin = () => {
       <div className='form'>
       <AddForm className='addForm' />
       <EditForm className="editForm" Id={Id}  />
-       <Sidebar/>
+       <Sidebar className="sideBar" />
        
       </div>
       <AdminProducts handleEdit={handleEdit}/>
@@ -40,6 +40,9 @@ const DIV=styled.div`
   }
   .editForm{
     width:100%
+  }
+  .sideBar{
+    margin-left: 20px;
   }
 `
 

@@ -12,7 +12,9 @@ export const adminLogin=(admin)=>(dispatch)=>{
             if(login!==undefined){
                 dispatch({type:LOGIN_SUCCESS_ADMIN,payload:admin.name})
                 alert("admin login successful")
-            }
+            }else{
+                alert("wrong credentials")
+               }
         }).catch((error)=>{
             dispatch({type:LOGIN_FAILURE})
         })
@@ -30,6 +32,8 @@ export const userLogin=(user)=>(dispatch)=>{
            if(login!==undefined){
                dispatch({type:LOGIN_SUCCESS_USER,payload:login.name})
                alert("login Successful")
+           }else{
+            alert("wrong credentials")
            }
        }).catch((error)=>{
            dispatch({type:LOGIN_FAILURE})

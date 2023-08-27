@@ -52,9 +52,17 @@ const Login = () => {
     };
     e.preventDefault();
     if (showLogin) {
-      dispatch(userLogin(user));
+       if(user.password.length>4){
+         dispatch(userLogin(user));
+       }else{
+        alert("check password")
+       }
     } else {
-      dispatch(userRegister(newUser));
+        if(password===confirmPassword && newUser.password.length>4){
+          dispatch(userRegister(newUser));
+        }else{
+          alert("check password")
+        }
     }
   };
 
@@ -69,7 +77,11 @@ const Login = () => {
       email: adminEmail,
       password: adminPassword,
     };
-    dispatch(adminLogin(obj));
+    if(obj.password.length>4){
+      dispatch(adminLogin(obj));
+    }else{
+      alert("at lest 4 character required for password")
+    }
   };
 
   if (isAuthAdmin) {
@@ -216,12 +228,13 @@ const Div = styled.div`
 
   background-image: url("https://media.istockphoto.com/id/1181331535/photo/natural-background-blurring-warm-colors-and-bright-sun-light-bokeh-or-christmas-background.jpg?s=612x612&w=0&k=20&c=1l8wZuFmwlGHH0v4j2O1hxxIwuis33v1KyiJ3qu5n0c=");
 
+
+ 
   height: 700px;
   background-repeat: no-repeat;
   background-size: cover;
-`;
 
-const Containers = styled.div`
+
   .login-container {
     display: flex;
     justify-content: center;
@@ -232,4 +245,5 @@ const Containers = styled.div`
     font-family: "Trirong", serif;
   }
 `;
+
 export default Login;
