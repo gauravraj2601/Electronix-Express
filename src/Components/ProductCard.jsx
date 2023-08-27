@@ -1,9 +1,11 @@
 import React from 'react'
 import { StarIcon } from '@chakra-ui/icons';
 import { styled } from 'styled-components';
-import { Box, Button, Icon } from '@chakra-ui/react';
+import { Box, Button, Icon
+  } from '@chakra-ui/react';
 import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, addToWishlist } from '../Redux/GetProducts/action';
@@ -19,7 +21,7 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
   const products= useSelector(store=>store.productReducer.products);
   const cartItems= useSelector(store=>store.productReducer.cart);
   const wishlistItems= useSelector(store=>store.productReducer.wishlist);
-
+ 
 
   
 
@@ -37,6 +39,7 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
   const handleCart=(id)=>{
     if(cartItems.find((el)=>el.id===id)){
       alert("Already Exist")
+     
     }
     else{
       const cart= products.find((el)=>el.id===id);
@@ -89,9 +92,9 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
           </button>
 
 
-            <button onClick={()=>handleCart(id)}>
+            <Button onClick={()=>handleCart(id)}>
               <Icon as={FiShoppingCart} boxSize={6} color='gray.500' _hover={{ color: 'green.500' }} />
-            </button>
+            </Button>
 
         </div>      
 
