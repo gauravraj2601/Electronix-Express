@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../Redux/GetProducts/action';
 
 import { useSearchParams } from 'react-router-dom';
+import { deleteProduct } from '../Redux/Crud/action';
 
 const AdminProducts = ({handleEdit}) => {
     const products= useSelector((store)=>store.productReducer.products);
+    const loading=useSelector(store=>store.authReducer.isLoading);
     const dispatch= useDispatch();
     const [searchParams]= useSearchParams();
 
@@ -31,17 +33,19 @@ let paramObj = {
         dispatch(getProducts(paramObj))
 
     },[searchParams])
-    // console.log(products)
-
-    // const handleEdit=(id)=>{
-    //     //  console.log(id)
-    // }
+   
+    const handleDelete=(id)=>[
+        dispatch(deleteProduct(id)).then(()=>{
+            dispatch(getProducts()) 
+        })
+    ]
   return (
     <DIV>
        
         <div className='card_container'>
+            
         {products?.map((product)=>(
-            <ProductCard key={product.id} {...product} handleEdit={handleEdit} />
+            <ProductCard key={product.id} {...product} handleEdit={handleEdit} handleDelete={handleDelete} />
         ))}
         </div>
     </DIV>

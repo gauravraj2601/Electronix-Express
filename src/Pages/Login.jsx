@@ -1,221 +1,242 @@
 import React, { useState } from 'react';
-
-import Image from "../Image/Logo.png"
-import styled, { keyframes } from 'styled-components'
-import { Link, Navigate } from 'react-router-dom';
+import { Form, Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { adminLogin, userLogin, userRegister } from '../Redux/Authentication/action';
-
-const AuthFormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
-  & > div {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  & > div > img {
-    width: 100%;
-    max-width: 500px;
-    transition: transform 0.5s ease-in-out;
-  }
-`;
-
-const AuthForm = styled.form`
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  width: 35%;
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-
-  &.fade-enter {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { Button, Container, Input } from '@chakra-ui/react';
 
 
-const AuthLabel = styled.label`
-  font-weight: bold;
-`;
-
-const AuthInput = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const AuthButton = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-`;
-
-const AuthSwitchLink = styled.span`
-  color: #007bff;
-  cursor: pointer;
-`;
+import { styled } from 'styled-components';
 
 const Login = () => {
   const [showLogin, setShowLogin] = useState(false);
-  const [showAdmin,setShowAdmin]=useState(false)
+  const [showAdmin, setShowAdmin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [adminEmail,setAdminEmail]=useState("");
-  const [adminPassword,setAdminPassword]=useState("")
+  const [adminEmail, setAdminEmail] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
-  const isAuthAdmin=useSelector(store=>store.authReducer.isAuthAdmin);
-  const isAuth=useSelector(store=>store.authReducer.isAuth)
+  const isAuthAdmin = useSelector(store => store.authReducer.isAuthAdmin);
+  const isAuth = useSelector(store => store.authReducer.isAuth);
 
-
-  console.log(isAuthAdmin)
+  console.log(isAuthAdmin);
 
   const handleSwitchForm = () => {
-    setShowAdmin(false)
+    setShowAdmin(false);
     setShowLogin(!showLogin);
   };
 
-  const handleSubmit = (e) => {
-    let user={
-      email,password
-    }
-    let newUser={
-      name,email,password
-    }
+  const handleSubmit = e => {
+    let user = {
+      email,
+      password,
+    };
+    let newUser = {
+      name,
+      email,
+      password,
+    };
     e.preventDefault();
     if (showLogin) {
-       dispatch(userLogin(user))
+      dispatch(userLogin(user));
     } else {
-       dispatch(userRegister(newUser))
+      dispatch(userRegister(newUser));
     }
   };
 
-  const handleAdmin=()=>{
-     setShowAdmin(true);
-  }
+  const handleAdmin = () => {
+    setShowAdmin(true);
+  };
 
-  const handleAdminSubmit=(e)=>{
-    e.preventDefault()
+  const handleAdminSubmit = e => {
+    e.preventDefault();
 
-    let obj={
-      email:adminEmail,
-      password:adminPassword
-    }
-       dispatch(adminLogin(obj))
-  }
+    let obj = {
+      email: adminEmail,
+      password: adminPassword,
+    };
+    dispatch(adminLogin(obj));
+  };
 
-  if(isAuthAdmin){
-    return <Navigate to={"/admin"} />
+  if (isAuthAdmin) {
+    return <Navigate to={'/admin'} />;
   }
-  if(isAuth){
-    return <Navigate to={"/product"} />
+  if (isAuth) {
+    return <Navigate to={'/product'} />;
   }
 
   return (
-    <AuthFormContainer>
-      <div>
-        <img src={Image} alt='no Img'/>
-      </div>
-      {
-        (showAdmin? (<>
-        <AuthForm onSubmit={handleAdminSubmit}>
-          <h2>Admin Login</h2>
-          
-          <AuthLabel>Email:</AuthLabel>
-          <AuthInput
-            type='text'
-            placeholder='Email'
-            value={adminEmail}
-            onChange={(e) => setAdminEmail(e.target.value)}
-          />
-          <AuthLabel>Password:</AuthLabel>
-          <AuthInput
-            type='password'
-            placeholder='Password'
-            value={adminPassword}
-            onChange={(e) => setAdminPassword(e.target.value)}
-          />
-         
-          <AuthButton type='submit'>Login</AuthButton>
-          <AuthSwitchLink onClick={handleSwitchForm}>
-            {showLogin ? 'New user? Register here' : 'Already registered? Login here'}
-          </AuthSwitchLink>
-         <Link onClick={handleAdmin}>Admin Login</Link>
-        </AuthForm>
-         
-         </>
-       ):(<><AuthForm onSubmit={handleSubmit}>
-          <h2>{showLogin ? 'User Login' : 'User Register'}</h2>
-          
-          {!showLogin && (
-            <div>
-              <AuthLabel>Name:</AuthLabel>
-              <AuthInput
-                type='text'
-                placeholder='Name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-          )}
-          <AuthLabel>Email:</AuthLabel>
-          <AuthInput
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <AuthLabel>Password:</AuthLabel>
-          <AuthInput
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {!showLogin && (
-            <div>
-              <AuthLabel>Confirm Password:</AuthLabel>
-              <AuthInput
-                type='password'
-                placeholder='Confirm Password'
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-          )}
-          <AuthButton type='submit'>{showLogin ? 'Login' : 'Register'}</AuthButton>
-          <AuthSwitchLink onClick={handleSwitchForm}>
-            {showLogin ? 'New user? Register here' : 'Already registered? Login here'}
-          </AuthSwitchLink>
-         <Link onClick={handleAdmin}>Admin Login</Link>
-        </AuthForm></>))
-      }
-      
-    </AuthFormContainer>
+
+     <Div>
+    <Containers className="login-container">
+      {showAdmin ? (
+        <>
+          <form className="login-form" onSubmit={handleAdminSubmit}>
+            <h2>Admin Login</h2>
+
+            <label>Email:</label>
+            <Input
+              type="text"
+              placeholder="Email"
+              value={adminEmail}
+              onChange={e => setAdminEmail(e.target.value)}
+            />
+            <label>Password:</label>
+            <Input
+              type="password"
+              placeholder="Password"
+              value={adminPassword}
+              onChange={e => setAdminPassword(e.target.value)}
+            />
+
+            <Button type="submit">Login</Button>
+            <Link onClick={handleSwitchForm}>
+              {showLogin ? 'New user? Register here' : 'Already registered? Login here'}
+            </Link>
+            <Link onClick={handleAdmin}>Admin Login</Link>
+          </form>
+        </>
+      ) : (
+        <>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <h2>{showLogin ? 'User Login' : 'User Register'}</h2>
+
+            {!showLogin && (
+              <div>
+                <label>Name:</label>
+                <Input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                />
+              </div>
+            )}
+            <label>Email:</label>
+            <Input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <label>Password:</label>
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            {!showLogin && (
+              <div>
+                <label>Confirm Password:</label>
+                <Input
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                />
+              </div>
+            )}
+            <Button type="submit">{showLogin ? 'Login' : 'Register'}</Button>
+            <Link onClick={handleSwitchForm}>
+              {showLogin ? 'New user? Register here' : 'Already registered? Login here'}
+            </Link>
+            <Link onClick={handleAdmin}>Admin Login</Link>
+          </form>
+        </>
+      )}
+    </Containers>
+    </Div>
+
   );
 };
 
+const Div=styled.div`
+   
+ 
+  
+  align-items: center;
+  border: 1px solid red;
+  background-image: url("https://i.pinimg.com/736x/30/d5/53/30d5538bd8790cc78195936047b18ddb.jpg");
+  /* background-size:500px; */
+  height: 700px;
+  /* background-repeat: repeat; */
+
+`
+
+const Containers=styled.div`
+  
+  
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background-color: #a09595;
+ 
+ 
+}
+
+.login-form {
+  background-color: #e3e4de;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin-top:150px;
+  margin-left: 17%;
+  margin-bottom:100px;
+}
+
+.login-form h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button {
+  width: 100%;
+  margin-top: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+.login-form a {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-form a:hover {
+  text-decoration: underline;
+}
+
+`
 export default Login;

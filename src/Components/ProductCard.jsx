@@ -12,7 +12,8 @@ import { addToCart, addToWishlist } from '../Redux/GetProducts/action';
 import EditForm from './EditForm';
 
 
-const ProductCard = ({id,image,name, category, review,company, price,handleEdit}) => {
+const ProductCard = ({id,image,name, category, review,company, price,handleEdit,handleDelete}) => {
+
   const averageRating = review?.reduce((total, reviewItem) => total + reviewItem.rating, 0) / review?.length;
 
   const products= useSelector(store=>store.productReducer.products);
@@ -79,7 +80,7 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit}
           { isAuthAdmin &&
                 <div> 
                  <Button onClick={()=>handleEdit(id)}>Edit</Button>
-                 <Button>Delete</Button> 
+                 <Button onClick={()=>handleDelete(id)}>Delete</Button> 
                  </div>  }
         <div className='wishlist-cart'>
           <button onClick={()=>handleWishlist(id)}>
