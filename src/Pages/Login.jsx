@@ -95,7 +95,7 @@ const Login = () => {
   return (
     <AuthFormContainer>
       <div>
-        <img src={Image} alt='no Image'/>
+        <img src={Image} alt='no Img'/>
       </div>
       <AuthForm onSubmit={handleSubmit}>
         <h2>{showLogin ? 'Login' : 'Register'}</h2>

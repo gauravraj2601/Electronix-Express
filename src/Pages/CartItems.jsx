@@ -7,9 +7,10 @@ import {  removeFromCart } from '../Redux/GetProducts/action';
 const CartItems = () => {
   const cartProducts= useSelector(store=>store.productReducer.cart)
   const dispatch= useDispatch()
-  console.log(cartProducts)
+  // console.log(cartProducts)
   const cartTotal= cartProducts?.reduce((acc,curr)=>acc+curr.price,0)
-  console.log(cartTotal)
+  // console.log(cartTotal)
+
   const handleRemove=(id)=>{
       dispatch(removeFromCart(id))
   }
