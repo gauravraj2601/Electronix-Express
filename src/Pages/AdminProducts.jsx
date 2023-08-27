@@ -9,23 +9,18 @@ import { deleteProduct } from '../Redux/Crud/action';
 
 const AdminProducts = ({handleEdit}) => {
     const products= useSelector((store)=>store.productReducer.products);
-    const loading=useSelector(store=>store.authReducer.isLoading);
     const dispatch= useDispatch();
     const [searchParams]= useSearchParams();
 
-    // const minPrice = products && Math.min(...products.map(product => parseFloat(product.price)));
-    // let maxPrice = products && Math?.max(...products.map(product => parseFloat(product.price)));
+   
 
 
-const priceGte= +searchParams.get("price_gte")
-const priceLte=  +searchParams.get("price_lte")
-console.log("gt", priceLte)
+
 let paramObj = {
     params: {
         category: searchParams.getAll("category"),
         company: searchParams.getAll("company"),
-        // price_gte: priceGte,
-        // price_lte:priceLte ===0?1000000:priceLte
+   
     }
 };
  

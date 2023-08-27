@@ -77,7 +77,7 @@ const DIV= styled.div`
         width:15%;
         height:550px;
         position: sticky;
-        top: 0;
+        top: 70px;
         padding: 5px;
         margin-top: -10px;
         /* border: 1px solid red; */

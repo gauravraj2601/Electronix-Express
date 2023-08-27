@@ -1,20 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { Icon, StarIcon } from "@chakra-ui/icons";
 import { AiFillTag } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
-
-import logo from "../Images/logo.png";
+import { useToast
+} from '@chakra-ui/react';
+// import logo from "../Images/logo.png";
 import RatingModule from "../Components/RatingModule";
+import { addToCart, addToWishlist, removeFromWishlist } from "../Redux/GetProducts/action";
 const SingleProducts = () => {
   const { id, averageRating } = useParams();
   const products = useSelector((store) => store.productReducer.products);
   const [data, setData] = useState({});
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isRatingModuleOpen, setIsRatingModuleOpen] = useState(false);
+  const wishlistProducts= useSelector(store=>store.productReducer.wishlist);
+  const cartItems= useSelector(store=>store.productReducer.cart);
+  const dispatch= useDispatch();
+  const toast= useToast();
 
+  const handleAddtoWishlist=(id)=>{
+    // if(wishlistProducts.find((el)=>el.id===id)){
+    //   toast({
+    //     title: 'Product.',
+    //     description: "Already Exist in Wishlist.",
+    //     status: 'error',
+    //     duration: 1500,
+    //     isClosable: true,
+    //     position:'top'
+    //   })
+    // }
+    // else{
+    //   const wishlist=products.find((el)=>el.id===id);
+    //   dispatch(addToWishlist(wishlist));
+    //   toast({
+    //     title: 'Product.',
+    //     description: "Added To Wishlist.",
+    //     status: 'success',
+    //     duration: 1500,
+    //     isClosable: true,
+    //     position:'top'
+    //   })
+    // }
+  }
+
+  const handleAddtoCart=(id)=>{
+    // if(cartItems.find((el)=>el.id===id)){
+    //   toast({
+    //     title: 'Product.',
+    //     description: "Already Exist in Cart.",
+    //     status: 'error',
+    //     duration: 1500,
+    //     isClosable: true,
+    //     position:'top'
+    //   })
+    // }
+    // else{
+    //   const cart= wishlistProducts.find((el)=>el.id===id);
+    //   dispatch(addToCart(cart))
+    //   dispatch(removeFromWishlist(id))
+    //   toast({
+    //     title: 'Product.',
+    //     description: "Product Added To Cart.",
+    //     status: 'success',
+    //     duration: 1500,
+    //     isClosable: true,
+    //     position:'top'
+    //   })
+    // }
+  }
   useEffect(() => {
     const product = products.find((el) => el.id === +id);
     console.log(product);
@@ -25,6 +81,8 @@ const SingleProducts = () => {
     <DIV>
       <div className="sticky-content">
         <img src={data?.image} alt="product-img" />
+        <button className="add-button" onClick={()=>handleAddtoCart(id)}>Add To Cart</button>
+            <button className="add-button" onClick={()=>handleAddtoWishlist(id)} >Add To Wishlist</button>
       </div>
       <div className="scrollable-content">
         <h5>{data?.name}</h5>
@@ -47,7 +105,7 @@ const SingleProducts = () => {
           <p style={{ color: "gray", fontWeight: "600" }}>
             {data?.review?.length} Reviews
           </p>
-          <img
+          {/* <img
             style={{
               width: "20px",
               height: "20px",
@@ -56,7 +114,7 @@ const SingleProducts = () => {
             }}
             src={logo}
             alt="logo"
-          />
+          /> */}
         </div>
         <h3>₹ {data?.price}</h3>
 
@@ -305,7 +363,7 @@ const DIV = styled.div`
     height: 400px;
     position: sticky;
     padding: 20px;
-    top: 0;
+    top: 80px;
     /* background-color: lightgray; */
   }
   .sticky-content > img {
@@ -332,4 +390,18 @@ const DIV = styled.div`
     background-color: #eee9e9;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   }
+  .add-button{
+        padding: 5px;
+        border: 1px solid gray;
+        margin-top:50px;
+        margin-right: 5px;
+        font-weight: bold;
+        background-color:#c36319 ;
+        color: white;
+    }
+    .add-button:hover{
+        color:#c36319 ;
+        border: 1px solid gray;
+        background-color: white;
+    }
 `;

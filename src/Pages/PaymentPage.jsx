@@ -1,4 +1,4 @@
-import { Box, Button, Container } from "@chakra-ui/react";
+import { Box, Button, Container, FormControl } from "@chakra-ui/react";
 import React from "react";
 import {
   FormLabel,
@@ -14,16 +14,20 @@ import {
 } from "@chakra-ui/react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { orderSuccess } from "../Redux/GetProducts/action";
 
 export const PaymentPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch= useDispatch();
   const handlePayment = (e) => {
     e.preventDefault();
     onOpen();
-    setTimeout(()=>{
-navigate('/')
-    },2000)
+    setTimeout(() => {
+      dispatch(orderSuccess())
+      navigate("/");
+    }, 2000);
   };
 
   document.body.style.backgroundImage =
@@ -59,31 +63,43 @@ navigate('/')
         >
           <Box>
             <form onSubmit={handlePayment}>
-              <FormLabel>Cardholder name</FormLabel>
-              <Input type="text" placeholder="name" />
-              <FormLabel>Card number</FormLabel>
-              <Input
-                type="number"
-                placeholder="xxxx xxxx xxxx"
-                minLength="12"
-              />
-              <FormLabel>Expiration</FormLabel>
-              <Input type="date" placeholder="xxxx xxxx xxxx" />
-              <FormLabel>Cvv</FormLabel>
-              <Input type="number" placeholder="xxx" minLength="3" />
-              <FormLabel>Postal Code</FormLabel>
-              <Input
-                type="number"
-                placeholder="postal zip code"
-                minLength="6"
-              />{" "}
+              <FormControl isRequired>
+                <FormLabel>Cardholder name</FormLabel>
+                <Input type="text" placeholder="name" />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Card number</FormLabel>
+                <Input
+                  type="number"
+                  placeholder="xxxx xxxx xxxx"
+                  maxLength="12"
+                />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Expiration</FormLabel>
+                <Input type="date" placeholder="xxxx xxxx xxxx" />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Cvv</FormLabel>
+                <Input type="number" placeholder="xxx" maxLength="3" />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Postal Code</FormLabel>
+                <Input
+                  type="number"
+                  placeholder="postal zip code"
+                  
+                />
+              </FormControl>{" "}
               <br /> <br />
-              <FormLabel>Address</FormLabel>
-              <Input
-                type="text"
-                placeholder="door no/locality/city"
-                minLength="3"
-              />{" "}
+              <FormControl isRequired>
+                <FormLabel>Address</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="door no/locality/city"
+                  
+                />
+              </FormControl>{" "}
               <br />
               <br />
               <Button width="300px" colorScheme="teal" type="submit">

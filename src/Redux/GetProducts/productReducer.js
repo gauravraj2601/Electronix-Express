@@ -1,4 +1,4 @@
-import { ADD_TO_CART, ADD_TO_WISHLIST, GET_FAILURE, GET_REQ, GET_SUCCESS, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST } from "./actionTypes"
+import { ADD_TO_CART, ADD_TO_WISHLIST, GET_FAILURE, GET_REQ, GET_SUCCESS, ORDER_SUCCESS, REMOVE_FROM_CART, REMOVE_FROM_WISHLIST } from "./actionTypes"
 
 
 const initialState={
@@ -26,6 +26,8 @@ export const productReducer=(state=initialState,{type,payload})=>{
             return {...state,wishlist:state.wishlist.filter(item=>item.id!==payload)}
         case REMOVE_FROM_CART:
             return {...state, cart: state.cart.filter(item=>item.id !==payload)}
+        case ORDER_SUCCESS:
+            return {...state, cart:[]}
         default:
             return state;
     }

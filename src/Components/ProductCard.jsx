@@ -1,7 +1,7 @@
 import React from 'react'
 import { StarIcon } from '@chakra-ui/icons';
 import { styled } from 'styled-components';
-import { Box, Button, Icon
+import { Box, Button, Icon, useToast
   } from '@chakra-ui/react';
 import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -18,41 +18,57 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
   const products= useSelector(store=>store.productReducer.products);
   const cartItems= useSelector(store=>store.productReducer.cart);
   const wishlistItems= useSelector(store=>store.productReducer.wishlist);
- 
-
-  
-
   const dispatch= useDispatch()
-
-   
+  const toast= useToast();
   const isAuthAdmin=useSelector(store=>store.authReducer.isAuthAdmin);
-   
-  // const handleEdit=()=>{
-  //   <EditForm id={id} />
-  //   console.log("edit")
-  // }
-
 
   const handleCart=(id)=>{
     if(cartItems.find((el)=>el.id===id)){
-      alert("Already Exist")
-     
+      toast({
+        title: 'Product.',
+        description: "Already Exist in Cart.",
+        status: 'error',
+        duration: 1500,
+        isClosable: true,
+        position:'top'
+      })
     }
     else{
       const cart= products.find((el)=>el.id===id);
       dispatch(addToCart(cart))
-      alert("Product Added To Cart")
+      toast({
+        title: 'Product.',
+        description: "Product Added To Cart.",
+        status: 'success',
+        duration: 1500,
+        isClosable: true,
+        position:'top'
+      })
     }
 
   }
   const handleWishlist=(id)=>{
     if(wishlistItems.find((el)=>el.id===id)){
-      alert("Already Exist")
+      toast({
+        title: 'Product.',
+        description: "Already Exist in Wishlist.",
+        status: 'error',
+        duration: 1500,
+        isClosable: true,
+        position:'top'
+      })
     }
     else{
       const wishlist=products.find((el)=>el.id===id);
       dispatch(addToWishlist(wishlist));
-      alert("Added To Wishlist")
+      toast({
+        title: 'Product.',
+        description: "Added To Wishlist.",
+        status: 'success',
+        duration: 1500,
+        isClosable: true,
+        position:'top'
+      })
     }
   }
   return (

@@ -33,7 +33,8 @@ const Navbar = () => {
   const isAuth = useSelector((store) => store.authReducer.isAuth);
   const isAdminAuth= useSelector(store=>store.authReducer.isAuthAdmin)
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const cartItems= useSelector((store)=>store.productReducer.cart);
+  const wishlistItems= useSelector((store)=>store.productReducer.wishlist);
   const location= useLocation();
   const [search, setSearch]= useState("");
   const [searchParams, setSearchParams]= useSearchParams();
@@ -45,8 +46,8 @@ const Navbar = () => {
   const navList = [
     { to: "/", title: "Home" },
     { to: isAdminAuth? "/admin": "/product", title: isAdminAuth? "Admin" : "AllProduct" },
-    { to: "/wishlist", title: "WishList" },
-    { to: "/cartitems", title: "Cart" },
+    { to: "/wishlist", title: `WishList (${wishlistItems.length})` },
+    { to: "/cartitems", title: `Cart (${cartItems?.length})` },
   ];
 
   const debouncedSetSearch = debounce((value) => {
@@ -102,8 +103,8 @@ const Navbar = () => {
             {/* Search bar */}
 
         {location.pathname==="/product" && 
-        <Box>
-        <InputGroup  borderColor="gray" borderWidth="1px" borderRadius="md">
+        <Box marginTop="-10px" marginBottom="-10px">
+        <InputGroup borderColor="gray" borderWidth="1px" borderRadius="md">
           <InputLeftElement pointerEvents="none">
             <SearchIcon color="gray" />
           </InputLeftElement>

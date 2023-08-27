@@ -13,6 +13,7 @@ import {
   FormLabel,
   Input,
   Text,
+  useToast
 } from "@chakra-ui/react";
 
 import { styled } from "styled-components";
@@ -24,6 +25,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const toast= useToast();
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
@@ -55,13 +57,29 @@ const Login = () => {
        if(user.password.length>4){
          dispatch(userLogin(user));
        }else{
-        alert("check password")
+        toast({
+          title: 'Wrong Crendentials.',
+          description: "check password.",
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+          position:'top'
+        })
        }
     } else {
         if(password===confirmPassword && newUser.password.length>4){
-          dispatch(userRegister(newUser));
+          dispatch(userRegister(newUser)).then(()=>{
+            setShowLogin(true)
+          })
         }else{
-          alert("check password")
+          toast({
+            title: 'Wrong Crendentials.',
+            description: "check password.",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+            position:'top'
+          })
         }
     }
   };
@@ -80,7 +98,15 @@ const Login = () => {
     if(obj.password.length>4){
       dispatch(adminLogin(obj));
     }else{
-      alert("at lest 4 character required for password")
+
+      toast({
+        title: 'Required Password Length.',
+        description: "at lest 4 character.",
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position:'top'
+      })
     }
   };
 
@@ -93,14 +119,14 @@ const Login = () => {
 
   return (
     <Div>
-      <Containers className="login-container">
+      <Container className="login-container">
         {" "}
         <br />
         <br />
         <br />
         {showAdmin ? (
           <>
-            <Container padding="50px" boxShadow=" 0 0 10px rgba(0, 0, 0, 0.1)">
+            <Container  padding="50px" boxShadow=" 0 0 10px rgba(0, 0, 0, 0.1)">
               <form className="login-form" onSubmit={handleAdminSubmit}>
                 <Text fontWeight="bold">Admin Login</Text>
                 <FormControl isRequired>
@@ -128,7 +154,7 @@ const Login = () => {
                 </FormControl>{" "}
                 <br />
                 <br />
-                <Button type="submit" bg="teal" color="white" width="300px">
+                <Button type="submit" bg="teal" color="white" width="300px" _hover={{color:"teal", bg:"white", variant:"outline"}}>
                   Login
                 </Button>{" "}
                 <br />
@@ -144,7 +170,7 @@ const Login = () => {
           </>
         ) : (
           <>
-            <Container padding="50px" boxShadow=" 0 0 10px rgba(0, 0, 0, 0.1)">
+            <Container marginTop="200px" padding="50px" boxShadow=" 0 0 10px rgba(0, 0, 0, 0.1)">
               <form className="login-form" onSubmit={handleSubmit}>
                 <Text fontWeight="bold">
                   {showLogin ? "User Login" : "User Registeration"}
@@ -202,7 +228,7 @@ const Login = () => {
                     <br />
                   </div>
                 )}
-                <Button type="submit" bg="teal" color="white" width="270px">
+                <Button type="submit" bg="teal" color="white" width="270px" _hover={{color:"teal", bg:"white", variant:"outline"}}>
                   {showLogin ? "Login" : "Register"}
                 </Button>{" "}
                 <br /> <br />
@@ -216,7 +242,7 @@ const Login = () => {
             </Container>
           </>
         )}
-      </Containers>{" "}
+      </Container>{" "}
       <br />
       <br />
     </Div>
@@ -225,11 +251,7 @@ const Login = () => {
 
 const Div = styled.div`
   align-items: center;
-
   background-image: url("https://media.istockphoto.com/id/1181331535/photo/natural-background-blurring-warm-colors-and-bright-sun-light-bokeh-or-christmas-background.jpg?s=612x612&w=0&k=20&c=1l8wZuFmwlGHH0v4j2O1hxxIwuis33v1KyiJ3qu5n0c=");
-
-
- 
   height: 700px;
   background-repeat: no-repeat;
   background-size: cover;
