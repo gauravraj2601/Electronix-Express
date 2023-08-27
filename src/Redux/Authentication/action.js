@@ -10,7 +10,7 @@ export const adminLogin=(admin)=>(dispatch)=>{
             let login= data.find((el)=>el.email===admin.email&&el.password===admin.password);
             console.log(login)
             if(login!==undefined){
-                dispatch({type:LOGIN_SUCCESS_ADMIN,payload:admin})
+                dispatch({type:LOGIN_SUCCESS_ADMIN,payload:admin.name})
                 alert("admin login successful")
             }
         }).catch((error)=>{
@@ -28,7 +28,7 @@ export const userLogin=(user)=>(dispatch)=>{
            let login= data.find((el)=>el.email===user.email&&el.password===user.password);
            console.log(login)
            if(login!==undefined){
-               dispatch({type:LOGIN_SUCCESS_USER,payload:user})
+               dispatch({type:LOGIN_SUCCESS_USER,payload:login.name})
                alert("login Successful")
            }
        }).catch((error)=>{

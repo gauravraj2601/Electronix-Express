@@ -5,7 +5,8 @@ const initialState = {
     isAuth: false,
     isLoading: false,
     isError: false,
-    isAuthAdmin:false
+    isAuthAdmin:false,
+    name:"",
   };
   
 
@@ -20,7 +21,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
           isLoading: false,
           isError: false,
           isAuth: true,
-         
+          name:payload
         };
       case LOGIN_FAILURE:
         return {
@@ -34,6 +35,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
             isLoading: false,
             isError: false,
             isAuthAdmin: true,
+            
           }
         }
       default:

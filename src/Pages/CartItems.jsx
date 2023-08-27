@@ -11,10 +11,10 @@ const CartItems = () => {
   const dispatch= useDispatch()
   // console.log(cartProducts)
   const cartTotal= cartProducts?.reduce((acc,curr)=>acc+curr.price,0)
-<
 
 
-  const navigate= useNavigate()
+
+  const navigate= useNavigate();
 
   const handleRemove=(id)=>{
       dispatch(removeFromCart(id))

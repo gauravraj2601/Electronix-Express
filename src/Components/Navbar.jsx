@@ -36,6 +36,9 @@ const Navbar = () => {
   const [search, setSearch]= useState("");
   const [searchParams, setSearchParams]= useSearchParams();
 
+  const name=useSelector(store=>store.authReducer.name);
+  console.log(name)
+
 
   const navList = [
     { to: "/", title: "Home" },
@@ -127,7 +130,7 @@ const Navbar = () => {
           ))}
           {/* Logic for userName Disaplayed as login */}
 
-          {isAuth && <Text fontFamily="Open Sans sans-serif">{}</Text>}
+          {isAuth && <Text fontFamily="Open Sans sans-serif">{name}</Text>}
 
           {/* Login and LogOut Logic */}
           {isAuth ? (

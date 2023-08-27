@@ -23,6 +23,8 @@ const Login = () => {
   const isAuthAdmin = useSelector(store => store.authReducer.isAuthAdmin);
   const isAuth = useSelector(store => store.authReducer.isAuth);
 
+
+
   console.log(isAuthAdmin);
 
   const handleSwitchForm = () => {
@@ -66,11 +68,10 @@ const Login = () => {
     return <Navigate to={'/admin'} />;
   }
   if (isAuth) {
-    return <Navigate to={'/product'} />;
+    return <Navigate to={'/'} />;
   }
 
   return (
-
      <Div>
     <Containers className="login-container">
       {showAdmin ? (
@@ -151,7 +152,6 @@ const Login = () => {
       )}
     </Containers>
     </Div>
-
   );
 };
 
