@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { styled } from 'styled-components'
 
@@ -21,7 +22,7 @@ const CartCard = ({id,image,Highlights,name,price, handleRemove}) => {
             <h2>Delivery by <span>{deliveryDate.toDateString()} </span>| </h2>
             <button onClick={()=>handleRemove(id)} >Remove</button>
         </div>
-    </DIV>
+        </DIV>
   )
 }
 

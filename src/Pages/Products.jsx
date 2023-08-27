@@ -4,13 +4,23 @@ import ProductCard from '../Components/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../Redux/GetProducts/action';
 import Sidebar from '../Components/Sidebar';
-import { useSearchParams } from 'react-router-dom';
+
+
+
+
+import { useSearchParams ,useParams} from 'react-router-dom';
 import Loader from '../Components/Loading';
+
 const Products = () => {
     const products= useSelector((store)=>store.productReducer.products);
     const dispatch= useDispatch();
     const [searchParams]= useSearchParams();
+
+   
+
+
     const isLoading= useSelector((store)=>store.productReducer.isLoading)
+
     // const minPrice = products && Math.min(...products.map(product => parseFloat(product.price)));
     // let maxPrice = products && Math?.max(...products.map(product => parseFloat(product.price)));
 
@@ -32,6 +42,7 @@ let paramObj = {
  
     useEffect(()=>{
         dispatch(getProducts(paramObj))
+        
 
     },[searchParams])
     // console.log(products)

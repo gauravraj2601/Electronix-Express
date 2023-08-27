@@ -1,29 +1,23 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Img,
-} from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Image } from "@chakra-ui/react";
 
 import React, { useEffect } from "react";
 import { styled } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/GetProducts/action";
 import ProductCard from "../Components/ProductCard";
+import { Link } from "react-router-dom";
+
 
 const HomePage = () => {
   const products = useSelector((store) => store.productReducer.products);
   const isLoading = useSelector((store) => store.productReducer.isLoading);
-  // console.log(isLoading)
+ 
   const dispatch = useDispatch();
   console.log(products);
   useEffect(() => {
     dispatch(getProducts());
   }, []);
-  console.log(isLoading)
+  console.log(isLoading);
 
   return (
     <DIV>
@@ -38,7 +32,7 @@ const HomePage = () => {
         // border="1px solid red"
       >
         <Heading
-          fontFamily="Sofia"
+          fontFamily="'Trirong', serif"
           sans-serif
           marginLeft={{ lg: "130px", md: "130px" }}
           marginBottom="40px"
@@ -47,7 +41,6 @@ const HomePage = () => {
         </Heading>
         <Container
           className="trending"
-          // border="1px solid red"
           maxW="1300px"
           display="flex"
           flexDirection={{ lg: "row", md: "row", sm: "column", base: "column" }}
@@ -55,46 +48,60 @@ const HomePage = () => {
           alignItems="center"
           marginTop={{ sm: "20px", base: "30px" }}
         >
-          <Box>
-            <Image
-              src="https://m.media-amazon.com/images/I/51eGaaoQ1mL._AC_SY200_.jpg"
-              className="trending_img"
-              height="100px"
-            />
-            <p className="trend">Mobile</p>
-          </Box>
-          <Box>
-            <Image
-              src="https://m.media-amazon.com/images/I/61MbLLagiVL._AC_UY327_FMwebp_QL65_.jpg"
-              className="trending_img"
-              height="110%"
-            />
-            <p className="trend">Speaker</p>
-          </Box>
-          <Box>
-            <Image
-              src="https://m.media-amazon.com/images/I/511mMK0LW2L._AC_UY327_FMwebp_QL65_.jpg"
-              className="trending_img"
-              height="100px"
-            />
-            <p className="trend">Tablet</p>
-          </Box>
-          <Box>
-            <Image
-              src="https://m.media-amazon.com/images/I/51DmOWr3rnL._AC_UL600_FMwebp_QL65_.jpg"
-              className="trending_img"
-              height="100px"
-            />
-            <p className="trend">Laptop</p>
-          </Box>
-          <Box>
-            <Image
-              src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"
-              className="trending_img"
-              height="100px"
-            />
-            <p className="trend">Accessories</p>
-          </Box>
+          <Link to="/product/smartphone">
+            <Box>
+              <Image
+                src="https://m.media-amazon.com/images/I/51eGaaoQ1mL._AC_SY200_.jpg"
+                className="trending_img"
+                height="100px"
+              />
+              <p className="trend">Mobile</p>
+            </Box>
+          </Link>
+
+          <Link to="/product/speaker">
+            <Box>
+              <Image
+                src="https://m.media-amazon.com/images/I/61MbLLagiVL._AC_UY327_FMwebp_QL65_.jpg"
+                className="trending_img"
+                height="110%"
+              />
+              <p className="trend">Speaker</p>
+            </Box>
+          </Link>
+
+          <Link to="product/tablet">
+            <Box>
+              <Image
+                src="https://m.media-amazon.com/images/I/511mMK0LW2L._AC_UY327_FMwebp_QL65_.jpg"
+                className="trending_img"
+                height="100px"
+              />
+              <p className="trend">Tablet</p>
+            </Box>
+          </Link>
+
+          <Link to="product/laptop">
+            <Box>
+              <Image
+                src="https://m.media-amazon.com/images/I/51DmOWr3rnL._AC_UL600_FMwebp_QL65_.jpg"
+                className="trending_img"
+                height="100px"
+              />
+              <p className="trend">Laptop</p>
+            </Box>
+          </Link>
+
+          <Link to="product/headphones">
+            <Box>
+              <Image
+                src="https://m.media-amazon.com/images/I/61CVih3UpdL._AC_UY327_FMwebp_QL65_.jpg"
+                className="trending_img"
+                height="100px"
+              />
+              <p className="trend">Headphones</p>
+            </Box>
+          </Link>
         </Container>
       </Box>
       <br />
@@ -126,7 +133,6 @@ const HomePage = () => {
         </Box>
         <Box
           className="ndProducts"
-         
           width={{ lg: "45%", md: "45%", sm: "100%", base: "100%" }}
         >
           <p>Smart Camera</p> <br />
@@ -145,7 +151,10 @@ const HomePage = () => {
       <br />
       <br />
       <Container maxW="1300px">
-        <Heading textAlign="left">Latest Product</Heading> <br />
+        <Heading textAlign="left" fontFamily="'Trirong', serif" sans-serif>
+          Latest Product
+        </Heading>{" "}
+        <br />
         <br />
         <Box
           className="latest_product"
@@ -171,7 +180,10 @@ const HomePage = () => {
       </Box>{" "}
       <br /> <br /> <br />
       <Container maxW="1300px">
-        <Heading textAlign="left">Popular Product</Heading> <br />
+        <Heading textAlign="left" fontFamily="'Trirong', serif" sans-serif>
+          Popular Product
+        </Heading>{" "}
+        <br />
         <br />
         <Box
           className="latest_product"
@@ -185,7 +197,8 @@ const HomePage = () => {
           }}
         >
           {products.map(
-            (item, id) => id < 10 && <ProductCard key={item.id} {...item} />
+            (item, id) =>
+              id >= 11 && id < 21 && <ProductCard key={item.id} {...item} />
           )}
         </Box>
       </Container>{" "}
@@ -202,30 +215,43 @@ const HomePage = () => {
         paddingBottom="30px"
       >
         <Box>
-          <p className="customer_help">Flexible Pricing Policy</p> <br />
+          <p className="customer_help" fontFamily="'Trirong', serif" sans-serif>
+            Flexible Pricing Policy
+          </p>{" "}
+          <br />
           <p>
             Always competeive price and an extensive loyalty program for our
             customers{" "}
           </p>
         </Box>
         <Box>
-          <p className="customer_help">A team of professionals</p> <br />
+          <p className="customer_help" fontFamily="'Trirong', serif" sans-serif>
+            A team of professionals
+          </p>{" "}
+          <br />
           <p>
             Experienced specialists who have been certified by world vendors{" "}
           </p>
         </Box>
         <Box>
-          <p className="customer_help">Extensive work experience</p> <br />
+          <p className="customer_help" fontFamily="'Trirong', serif" sans-serif>
+            Extensive work experience
+          </p>{" "}
+          <br />
           <p>
             And we continue to develop successfully as well as our customers{" "}
           </p>
         </Box>
         <Box>
-          <p className="customer_help">Free shipping</p> <br />
+          <p className="customer_help" fontFamily="'Trirong', serif" sans-serif>
+            Free shipping
+          </p>{" "}
+          <br />
           <p>Operational logistics at the expense of the supplier </p>
         </Box>
       </Container>{" "}
       <br /> <br />
+    
     </DIV>
   );
 };
@@ -273,5 +299,8 @@ const DIV = styled.div`
   }
   .ndProducts {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+  * {
+    font-family: "Trirong", serif;
   }
 `;

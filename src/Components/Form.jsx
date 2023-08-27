@@ -39,7 +39,7 @@ const AddForm = () => {
   };
 
   return (
-    <FormContainer>
+    <FormContainer className='addForm'>
       <h1>Add Product</h1>
       <Form onSubmit={handleSubmit}>
         <label >Product Name:</label>
