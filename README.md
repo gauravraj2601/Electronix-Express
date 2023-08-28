@@ -1,7 +1,8 @@
 # gusty-adjustment-6018
-# Electronic Online Shop Web Application
+- Deployed Link : elctronix-express-k74afyg3e-ganeshgourav.vercel.app
+# Electronix Online Shop Web Application
 
-Welcome to Express Electronics! This application is built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features, this app aims to revolutionize online electronic shopping. Read on to learn more about its components, features, and how to get started.
+Welcome to Express Electronix! This application is built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features, this app aims to revolutionize online electronic shopping. Read on to learn more about its components, features, and how to get started.
 
 ## Table of Contents
 
@@ -68,19 +69,19 @@ The application interacts with the following API endpoints:
 
 Products Endpoint: https://electronix-express-api.onrender.com/products
 
-GET: Retrieve a list of all products.
-POST: Add a new product to the store.
-PATCH: Update information for a specific product.
+- GET: Retrieve a list of all products.
+- POST: Add a new product to the store.
+- PATCH: Update information for a specific product.
 
 Product Detail Endpoint: /singleproduct/:id
 
 
-## Contributors
-Gaurav Raj,
-Ganesh Kumar,
-Akshay Ramoliya
+# Contributors
+- Gaurav Raj,
+- Ganesh Kumar,
+- Akshay Ramoliya
 
 ## Deployment
-The app is deployed on Netlify. You can access it using the following link:
+The app is deployed on Vercel. You can access it using the following link:
 
-Netlify App Link
+Deployed Link : elctronix-express-k74afyg3e-ganeshgourav.vercel.app
