@@ -161,7 +161,7 @@ const Login = () => {
     return <Navigate to={"/admin"} />;
   }
   if (isAuth) {
-    return navigate(location.state);
+    return <Navigate to ={"/"}/>;
   }
 
   return (
