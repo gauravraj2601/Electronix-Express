@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../Redux/Crud/action';
 import styled from 'styled-components';
 import { getProducts } from '../Redux/GetProducts/action';
+import { useToast } from '@chakra-ui/react';
 
 const EditForm = ({Id}) => {
   const dispatch = useDispatch();
   const products= useSelector((store)=>store.productReducer.products);
+  const toast=useToast()
 
   const [product, setProduct] = useState({
     name: '',
@@ -43,6 +45,12 @@ const EditForm = ({Id}) => {
     };
 
     dispatch(editProduct(Id,updatedProductData)).then(()=>{
+      toast({
+        title: 'Edit Successful',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
          dispatch(getProducts())
     });
 

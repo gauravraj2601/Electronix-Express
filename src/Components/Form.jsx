@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addProduct } from '../Redux/Crud/action';
 import styled from 'styled-components';
 import { getProducts } from '../Redux/GetProducts/action';
+import { useToast } from '@chakra-ui/react';
 
 const AddForm = () => {
   const [productName, setProductName] = useState('');
@@ -14,6 +15,7 @@ const AddForm = () => {
   const [productHighlights, setProductHighlights] = useState([]);
 
   const dispatch = useDispatch();
+  const toast=useToast()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +31,12 @@ const AddForm = () => {
     };
 
     dispatch(addProduct(productData)).then(()=>{
+      toast({
+        title: 'Product Add Successful',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
        dispatch(getProducts())
     });
     // Reset form fields
