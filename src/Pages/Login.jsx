@@ -18,6 +18,7 @@ import {
 
 import { styled } from "styled-components";
 
+
 const Login = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
@@ -34,6 +35,8 @@ const Login = () => {
 
   const isAuthAdmin = useSelector((store) => store.authReducer.isAuthAdmin);
   const isAuth = useSelector((store) => store.authReducer.isAuth);
+
+  
 
   console.log(isAuthAdmin);
 
