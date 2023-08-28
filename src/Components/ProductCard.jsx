@@ -95,8 +95,8 @@ const ProductCard = ({id,image,name, category, review,company, price,handleEdit,
             <h5>₹ {price}</h5>
           { isAuthAdmin &&
                 <div> 
-                 <Button onClick={()=>handleEdit(id)}>Edit</Button>
-                 <Button onClick={()=>handleDelete(id)}>Delete</Button> 
+                 <Button  onClick={()=>handleEdit(id)}>Edit</Button>
+                 <Button marginLeft="10px" onClick={()=>handleDelete(id)}>Delete</Button> 
                  </div>  }
         <div className='wishlist-cart'>
           <button onClick={()=>handleWishlist(id)}>

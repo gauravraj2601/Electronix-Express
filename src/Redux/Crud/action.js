@@ -20,7 +20,7 @@ export const addReview=(id, review)=>(dispatch)=>{
 
   return (
     axios
-    .post(`https://electronix-express-api.onrender.com/products/${id}`,{review:review})
+    .post(`https://electronix-express-api.onrender.com/products/${id}`,review)
     .then((res)=>{
       dispatch({type:REVIEW_ADD,payload:res.data})
     })
@@ -34,7 +34,8 @@ export const deleteProduct=(id)=>(dispatch)=>{
       axios
       .delete(`https://electronix-express-api.onrender.com/products/${id}`).then((res)=>{
          console.log(res)
-         alert("delete")
+         
+         alert("deleted")
       }).catch((error)=>{
         dispatch({type:GET_FAILURE})
       })
