@@ -11,10 +11,9 @@ export const adminLogin=(admin)=>(dispatch)=>{
             console.log(login)
             if(login!==undefined){
                 dispatch({type:LOGIN_SUCCESS_ADMIN,payload:admin.name})
-                alert("admin login successful")
-            }else{
-                alert("wrong credentials")
-               }
+                return login
+                // alert("admin login successful")
+            }
         }).catch((error)=>{
             dispatch({type:LOGIN_FAILURE})
         })
@@ -31,9 +30,8 @@ export const userLogin=(user)=>(dispatch)=>{
            console.log(login)
            if(login!==undefined){
                dispatch({type:LOGIN_SUCCESS_USER,payload:login.name})
-               alert("login Successful")
-           }else{
-            alert("wrong credentials")
+            //    alert("login Successful")
+               return login
            }
        }).catch((error)=>{
            dispatch({type:LOGIN_FAILURE})
@@ -46,7 +44,7 @@ export const userRegister=(newUser)=>(dispatch)=>{
     return(
         axios.post("https://electronix-express-api.onrender.com/users",newUser).then((res)=>{
             dispatch({type:LOGIN_REGISTER_SUCCESS})
-            alert("registar successfull")
+            // alert("registar successfull")
         }).catch((error)=>{
             dispatch({type:LOGIN_FAILURE})
         })

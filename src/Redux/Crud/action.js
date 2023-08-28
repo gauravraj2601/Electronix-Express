@@ -7,7 +7,7 @@ export const addProduct = (productData) => async (dispatch) => {
   try {
     const response = await axios.post("https://electronix-express-api.onrender.com/products", productData);
     dispatch({ type: PRODUCT_ADDED, payload: response.data });
-    alert("succesfull")
+    // alert("succesfull")
   } catch (error) {
     dispatch({type:GET_FAILURE})
     console.error('Error adding product:', error);
@@ -35,7 +35,7 @@ export const deleteProduct=(id)=>(dispatch)=>{
       .delete(`https://electronix-express-api.onrender.com/products/${id}`).then((res)=>{
          console.log(res)
          
-         alert("deleted")
+        //  alert("deleted")
       }).catch((error)=>{
         dispatch({type:GET_FAILURE})
       })
@@ -48,7 +48,7 @@ export const editProduct=(id,user)=>(dispatch)=>{
    axios
    .patch(`https://electronix-express-api.onrender.com/products/${id}`,user).then((res)=>{
       console.log(res)
-      alert("edited")
+      // alert("edited")
    }).catch((error)=>{
      dispatch({type:GET_FAILURE})
    })

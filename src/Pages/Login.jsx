@@ -57,8 +57,26 @@ const Login = () => {
     };
     e.preventDefault();
     if (showLogin) {
-       if(user.password.length>4){
-         dispatch(userLogin(user));
+       if(user.password.length>=4){
+         dispatch(userLogin(user)).then((res)=>{
+           if(res!==undefined){
+            toast({
+              title: 'Login Success',
+              status: 'success',
+              duration: 9000,
+              isClosable: true,
+            })
+           }else{
+            toast({
+              title: 'Wrong Crendentials.',
+              description: "check password.",
+              status: 'error',
+              duration: 2000,
+              isClosable: true,
+              position:'top'
+            })
+           }
+         })
        }else{
         toast({
           title: 'Wrong Crendentials.',
@@ -70,9 +88,16 @@ const Login = () => {
         })
        }
     } else {
-        if(password===confirmPassword && newUser.password.length>4){
+        if(password===confirmPassword && newUser.password.length>=4){
           dispatch(userRegister(newUser)).then(()=>{
             setShowLogin(true)
+            toast({
+              title: 'Account created.',
+              description: "We've created your account for you.",
+              status: 'success',
+              duration: 9000,
+              isClosable: true,
+            })
           })
         }else{
           toast({
@@ -98,10 +123,27 @@ const Login = () => {
       email: adminEmail,
       password: adminPassword,
     };
-    if(obj.password.length>4){
-      dispatch(adminLogin(obj));
+    if(obj.password.length>=4){
+      dispatch(adminLogin(obj)).then((res)=>{
+        if(res!==undefined){
+          toast({
+            title: 'Login Success',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+        }else{
+          toast({
+            title: 'Wrong Crendentials.',
+            description: "at lest 4 character.",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+            position:'top'
+          })
+        }
+      })
     }else{
-
       toast({
         title: 'Required Password Length.',
         description: "at lest 4 character.",

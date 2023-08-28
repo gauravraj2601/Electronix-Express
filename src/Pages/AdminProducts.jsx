@@ -6,12 +6,13 @@ import { getProducts } from '../Redux/GetProducts/action';
 
 import { useSearchParams } from 'react-router-dom';
 import { deleteProduct } from '../Redux/Crud/action';
+import { useToast } from '@chakra-ui/react';
 
 const AdminProducts = ({handleEdit}) => {
     const products= useSelector((store)=>store.productReducer.products);
     const dispatch= useDispatch();
     const [searchParams]= useSearchParams();
-
+    const toast= useToast();
    
 
 
@@ -31,6 +32,12 @@ let paramObj = {
    
     const handleDelete=(id)=>[
         dispatch(deleteProduct(id)).then(()=>{
+            toast({
+                title: 'Delete Success',
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+              })
             dispatch(getProducts()) 
         })
     ]
