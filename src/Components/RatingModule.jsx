@@ -41,8 +41,8 @@ const RatingModule = ({id, isOpen,productName ,onClose, name, reviews, rating })
         const revData= products.find((el)=>el.id=== +id);
         setReviewData(revData.review)
       },[])
-      console.log(products)
-      console.log("d",reviewData)
+      // console.log(products)
+      // console.log("d",reviewData)
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
       <ModalOverlay />
