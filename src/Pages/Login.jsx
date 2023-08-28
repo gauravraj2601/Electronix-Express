@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Link, Navigate } from "react-router-dom";
+import { Form, Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   adminLogin,
@@ -27,6 +27,8 @@ const Login = () => {
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const toast= useToast();
+  const location =useLocation();
+  const navigate=useNavigate();
 
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
@@ -159,7 +161,7 @@ const Login = () => {
     return <Navigate to={"/admin"} />;
   }
   if (isAuth) {
-    return <Navigate to={"/"} />;
+    return navigate(location.state);
   }
 
   return (
