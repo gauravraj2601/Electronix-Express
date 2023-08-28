@@ -84,4 +84,4 @@ Product Detail Endpoint: /singleproduct/:id
 ## Deployment
 The app is deployed on Vercel. You can access it using the following link:
 
-Deployed Link : elctronix-express-k74afyg3e-ganeshgourav.vercel.app
+Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
