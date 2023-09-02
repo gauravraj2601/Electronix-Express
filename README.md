@@ -45,6 +45,7 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - Users can adjust quantities, proceed to checkout, or continue shopping.
 
    ![CartPage](./ReadmeImages/CartPage.jpg)
+   <img src="./ReadmeImages/CartPage.jpg" alt="cart">
 
 
 5. **Wishlist Page**
