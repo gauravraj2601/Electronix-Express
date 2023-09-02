@@ -44,16 +44,16 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - Shows a summary of items added to the shopping cart.
    - Users can adjust quantities, proceed to checkout, or continue shopping.
 
-   ![CartPage](./ReadmeImages/CartPage.jpg)
-   <img src="./ReadmeImages/CartPage.jpg" alt="cart">
+
 
 
 5. **Wishlist Page**
    - Displays items that users have added to their wishlist.
    - Users can move items to the cart or remove them from the wishlist.
 
-     ![WishList](./ReadmeImages/WishlistPage.jpg)
+     
 
+![WishlistPage](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/119353884/97927a12-1d3b-43ab-b7c3-128dfea0dd7d)
 
 
 
@@ -61,7 +61,8 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - A secure section for administrators to manage products.
    - Admins can add new products, edit existing ones and also delete existing products
 
-   ![ListingPage](./ReadmeImages/AdimPanel.jpg)
+![AdimPanel](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/119353884/3e193462-0786-49af-9651-c315128e6487)
+  
 
 
 
@@ -71,9 +72,10 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - Existing users can log in.
    - New users can register for an account.
 
-     ![LoginPage](./ReadmeImages/LoginPage.jpg)
+    
 
 
+![LoginPage](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/119353884/85c812a2-acc9-498a-9c66-b918f11bad21)
 
 
 ## Authentication
