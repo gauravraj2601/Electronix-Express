@@ -47,6 +47,7 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - Shows a summary of items added to the shopping cart.
    - Users can adjust quantities, proceed to checkout, or continue shopping.
 
+![Uploading CartPage.png…]()
 
 
 
