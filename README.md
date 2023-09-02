@@ -47,7 +47,8 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - Shows a summary of items added to the shopping cart.
    - Users can adjust quantities, proceed to checkout, or continue shopping.
 
-![Uploading CartPage.png…]()
+
+![Cart Page](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/119414173/f1bdc16d-eb3a-4d54-9cae-63291d54c814)
 
 
 
