@@ -1,4 +1,4 @@
-![CartPage](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/123883332/51fc0f74-2cf1-4fd7-a868-48bea4cd5df2)# gusty-adjustment-6018
+# gusty-adjustment-6018
 - Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
 # Electronix Online Shop Web Application
 
