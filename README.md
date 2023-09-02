@@ -30,6 +30,7 @@ Welcome to Express Electronics! This application is built using React and Redux 
    - Displays a grid of electronic items available for purchase.
    - Users can filter products by category, company, and price range.
    - Integrated sidebar for refining search criteria.
+  
 
 3. **Product Details Page**
    - Presents comprehensive information about a selected product.
@@ -38,19 +39,23 @@ Welcome to Express Electronics! This application is built using React and Redux 
 4. **Cart Page**
    - Shows a summary of items added to the shopping cart.
    - Users can adjust quantities, proceed to checkout, or continue shopping.
+   ![CartPage](./ReadmeImages/CartPage.jpg)
 
 5. **Wishlist Page**
    - Displays items that users have added to their wishlist.
    - Users can move items to the cart or remove them from the wishlist.
+     ![WishList](./ReadmeImages/WishlistPage.jpg)
 
 6. **Admin Panel**
    - A secure section for administrators to manage products.
    - Admins can add new products, edit existing ones and also delete existing products
+   ![ListingPage](./ReadmeImages/AdimPanel.jpg)
 
 7. **Login Page**
    - Handles user and admin authentication.
    - Existing users can log in.
    - New users can register for an account.
+     ![LoginPage](./ReadmeImages/LoginPage.jpg)
 
 ## Authentication
 User Authentication: Users can create accounts and log in to access personalized features like shopping carts and wishlists.
