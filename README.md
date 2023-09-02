@@ -1,7 +1,8 @@
 # gusty-adjustment-6018
-# Electronic Online Shop Web Application
+- Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
+# Electronix Online Shop Web Application
 
-Welcome to Express Electronics! This application is built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features, this app aims to revolutionize online electronic shopping. Read on to learn more about its components, features, and how to get started.
+Welcome to Express Electronix! This application is built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features, this app aims to revolutionize online electronic shopping. Read on to learn more about its components, features, and how to get started.
 
 ## Table of Contents
 
@@ -26,11 +27,14 @@ Welcome to Express Electronics! This application is built using React and Redux 
 1. **Homepage**
    - A captivating landing page that welcomes users and introduces the app's offerings.
 
+
 2. **Product Listing Page**
    - Displays a grid of electronic items available for purchase.
    - Users can filter products by category, company, and price range.
    - Integrated sidebar for refining search criteria.
+
   
+
 
 3. **Product Details Page**
    - Presents comprehensive information about a selected product.
@@ -39,23 +43,37 @@ Welcome to Express Electronics! This application is built using React and Redux 
 4. **Cart Page**
    - Shows a summary of items added to the shopping cart.
    - Users can adjust quantities, proceed to checkout, or continue shopping.
+
    ![CartPage](./ReadmeImages/CartPage.jpg)
+
 
 5. **Wishlist Page**
    - Displays items that users have added to their wishlist.
    - Users can move items to the cart or remove them from the wishlist.
+
      ![WishList](./ReadmeImages/WishlistPage.jpg)
+
+
+
 
 6. **Admin Panel**
    - A secure section for administrators to manage products.
    - Admins can add new products, edit existing ones and also delete existing products
+
    ![ListingPage](./ReadmeImages/AdimPanel.jpg)
+
+
+
 
 7. **Login Page**
    - Handles user and admin authentication.
    - Existing users can log in.
    - New users can register for an account.
+
      ![LoginPage](./ReadmeImages/LoginPage.jpg)
+
+
+
 
 ## Authentication
 User Authentication: Users can create accounts and log in to access personalized features like shopping carts and wishlists.
@@ -73,19 +91,19 @@ The application interacts with the following API endpoints:
 
 Products Endpoint: https://electronix-express-api.onrender.com/products
 
-GET: Retrieve a list of all products.
-POST: Add a new product to the store.
-PATCH: Update information for a specific product.
+- GET: Retrieve a list of all products.
+- POST: Add a new product to the store.
+- PATCH: Update information for a specific product.
 
 Product Detail Endpoint: /singleproduct/:id
 
 
-## Contributors
-Gaurav Raj,
-Ganesh Kumar,
-Akshay Ramoliya
+# Contributors
+- Gaurav Raj,
+- Ganesh Kumar,
+- Akshay Ramoliya
 
 ## Deployment
-The app is deployed on Netlify. You can access it using the following link:
+The app is deployed on Vercel. You can access it using the following link:
 
-Netlify App Link
+Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
