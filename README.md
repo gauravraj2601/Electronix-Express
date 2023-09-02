@@ -1,4 +1,4 @@
-# gusty-adjustment-6018
+![CartPage](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/123883332/51fc0f74-2cf1-4fd7-a868-48bea4cd5df2)# gusty-adjustment-6018
 - Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
 # Electronix Online Shop Web Application
 
@@ -48,7 +48,10 @@ Welcome to Express Electronix! This application is built using React and Redux t
    - Users can adjust quantities, proceed to checkout, or continue shopping.
 
 
+
 ![Cart Page](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/119414173/f1bdc16d-eb3a-4d54-9cae-63291d54c814)
+
+
 
 
 
