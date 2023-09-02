@@ -27,18 +27,21 @@ Welcome to Express Electronix! This application is built using React and Redux t
 1. **Homepage**
    - A captivating landing page that welcomes users and introduces the app's offerings.
 
+![Home](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/123883332/20f6e2dc-d103-464b-9bac-74e4f25d38ff)
 
 2. **Product Listing Page**
    - Displays a grid of electronic items available for purchase.
    - Users can filter products by category, company, and price range.
    - Integrated sidebar for refining search criteria.
 
-  
+  ![Product](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/123883332/ab083523-e92f-4fed-bec8-ec264dd9534f)
+
 
 
 3. **Product Details Page**
    - Presents comprehensive information about a selected product.
    - Allows users to add the product to their cart or wishlist.
+![SingleProduct](https://github.com/gauravraj2601/gusty-adjustment-6018/assets/123883332/56ad5fef-be3e-4f55-99cd-07ba7b58df0b)
 
 4. **Cart Page**
    - Shows a summary of items added to the shopping cart.
