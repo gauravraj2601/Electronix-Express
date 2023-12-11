@@ -1,6 +1,7 @@
-# gusty-adjustment-6018
-- Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
+# Electronix Express
+gusty-adjustment-6018
 # Electronix Online Shop Web Application
+- Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
 
 Welcome to Electronix Express! This application aims to revolutionize online electronic shopping, built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features. You can read on to learn more about its components, features, and how to get started.
 
@@ -92,9 +93,12 @@ User Authentication: Users can create accounts and log in to access personalized
 Admin Authentication: Administrators have access to an exclusive admin panel. They can add new products and manage existing ones.
 
 ## Admin Panel
-Access the admin panel by visiting https://electronix-express-api.onrender.com/admin. Admins can:
+Access the admin panel by visiting [https://electronix-express-api.onrender.com/admin] and 
+Login with admin credentials
+email:"admin@electronix.com",   password:'admin'
 
-Add new products via POST requests.
+- Admins can:
+Add new products via POST requests,
 Edit existing products via dedicated product pages.
 
 ## API
