@@ -47,9 +47,9 @@ export const Footer = () => {
             <p>Google Play Sore</p>
             <p>Apple Play Sore</p>
           </Box> <br />
-        </Box> <br /><br />
+        </Box> <br /><br /><br />
         <Box>© 2023-24 All right are reserved</Box>
-        <Box>Made by ❤️ Three Editios.</Box>
+        
       </Container>
     </DIV>
   );
