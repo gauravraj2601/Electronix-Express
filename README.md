@@ -2,7 +2,8 @@
 gusty-adjustment-6018
 # Electronix Online Shop Web Application
 - Deployed Link : https://elctronix-express-k74afyg3e-ganeshgourav.vercel.app
-
+- Watch the demonstration : [Electronix Express](https://youtu.be/Ge4u_wSqf1g)
+  
 Welcome to Electronix Express! This application aims to revolutionize online electronic shopping, built using React and Redux to provide users with a seamless shopping experience for electronic items. With a user-friendly interface, user and admin authentication, and various features. You can read on to learn more about its components, features, and how to get started.
 
 ## Table of Contents
